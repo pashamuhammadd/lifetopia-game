@@ -1,0 +1,7 @@
+asset_id,category,filename,direction,canvas,anchor,source,rights_status,approval_status,unity_test
+A0-01,character,char_player_male_idle_d_v01.png,D,128x128,"64:16",pending,pending,pending,not_run
+A0-02,animation,char_player_male_walk_d_v01.png,D,128x128,"64:16",pending,pending,pending,not_run
+A0-03,terrain,terrain_grass_01_v01.png,none,64x64,grid,pending,pending,pending,not_run
+A0-04,prop,prop_palm_01_v01.png,none,TBD,root,pending,pending,pending,not_run
+A0-05,building,bld_starter_house_v01.png,none,TBD,footprint,pending,pending,pending,not_run
+A0-06,ui,ui_hud_sample_v01.png,none,TBD,TBD,pending,pending,pending,not_run

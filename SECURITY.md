@@ -1,0 +1,2 @@
+# Security (draft)
+Please report vulnerabilities privately using GitHub private vulnerability reporting if enabled, otherwise contact the project owner privately. Do not include exploitable details, tokens or user data in public issues. Do not test against production accounts or services without explicit authorization. No production credentials in Unity source/build or public Git history. Rotate/revoke exposed secrets immediately and assess history cleanup with owner. Security contact and supported versions are pending confirmation.
