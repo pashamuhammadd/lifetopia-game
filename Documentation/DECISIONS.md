@@ -52,6 +52,20 @@ M2 is closed as a **calibration milestone** with the exceptions below. The Art B
 | UI text | ASCII only in UI strings until a licensed font is bundled (built-in Web font lacks e.g. en dash) |
 | Web builds | Build once per milestone when features are stable; close the Unity Editor (or build in batchmode) on the 8 GB dev laptop |
 
+## M3.3 farming decisions — 26 November 2026 (founder approved, milestone closed)
+| Topic | Working choice |
+| --- | --- |
+| States | GDD stages Empty/Planted/Watered/Ready unchanged; hoe sets a separate `Tilled` flag |
+| Growth time | 120 s of `IGameClock.ActivePlaySeconds` from watering (pauses with the clock; ignores dev speed and time jumps); Ready derived, no per-frame timers |
+| After harvest | Plot stays tilled (`keepTilledAfterHarvest = true`); alternative (re-till) configurable |
+| Actions | Selected hotbar item decides the action; any item may harvest; tools never consumed; 1 seed consumed only after validation; full bag keeps crop Ready |
+| Crop | `tropical_fruit` uses existing `seed_tropical` → `crop_tropical_fruit`; pineapple is visual only; no new IDs or prices |
+| Local art | Item icons by stable ID via runtime `ItemIcons` + local `ItemIconOverrides`; UI sprites via `LocalArtBindings` in the local scene only; tracked assets reference no local art; public scene uses generated placeholders |
+| Layout | 6 plots (3 × 2) on the south edge of the main path, west of the starter house (centres x -12/-11/-10, y -1.5/-2.5), clear of tree canopies; soil `GroundDetail`, crops `World` with Sort Point Pivot (matches Sorting Group roots), badges `Overhead` on a cream disc |
+| Crop growth visuals (founder) | Ready = 100 % sprite size; per-stage Inspector scale multiplies the sprite size: seed ≈ 12.5 %, sprout ≈ 30 %, growing ≈ 67 %, ready 100 % of the ready plant (measured visible pixels) |
+| Crop visual sizes are a kept decision (founder, final) | Keep seed 0.68 / sprout 0.81 / growing 0.78 / ready 1.0 (`FarmVisualSet_Pack01`); new crops follow the same rule: measure visible pixels, ready 100 %, seed 10-15 %, sprout 25-35 %, growing 60-75 % |
+| Hotbar at 0 (founder) | Slot keeps its item reference when the count reaches 0 (dimmed, shows 0, not usable) and reactivates automatically on refill unless the player replaced/cleared it; saves keep such references |
+
 ## M3.2-D deployment decisions — 26 November 2026 (founder approved)
 | Topic | Working choice |
 | --- | --- |

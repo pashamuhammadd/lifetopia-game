@@ -8,7 +8,9 @@ namespace Lifetopia.InventorySystem
     /// always read from the <see cref="Inventory"/>, so the two can never disagree.
     /// - An item can be on at most one hotbar slot; assigning it elsewhere moves it.
     /// - Only items currently in the inventory can be assigned.
-    /// - When an item's count reaches 0 its hotbar slot is cleared automatically.
+    /// - When an item's count reaches 0 the slot KEEPS its reference (shown dimmed with 0) and becomes
+    ///   usable again automatically when the item is obtained again. Only <see cref="Assign"/> (another
+    ///   item) or <see cref="ClearSlot"/> changes it. Use <see cref="IsAvailable"/> before using an item.
     /// Moving items between inventory slots does not affect the hotbar.
     /// </summary>
     public sealed class Hotbar : IDisposable
@@ -29,7 +31,6 @@ namespace Lifetopia.InventorySystem
             if (size <= 0) throw new ArgumentOutOfRangeException(nameof(size));
             _inventory = inventory ?? throw new ArgumentNullException(nameof(inventory));
             _items = new ItemDefinition[size];
-            _inventory.Changed += OnInventoryChanged;
         }
 
         public int Size => _items.Length;
@@ -48,6 +49,12 @@ namespace Lifetopia.InventorySystem
         }
 
         public ItemDefinition SelectedItem => GetItem(SelectedIndex);
+
+        /// <summary>True when slot <paramref name="index"/> references an item the inventory currently holds (count &gt; 0).</summary>
+        public bool IsAvailable(int index) => GetCount(index) > 0;
+
+        /// <summary>The selected item only if at least one is in the inventory; otherwise null (never use a 0-count item).</summary>
+        public ItemDefinition SelectedAvailableItem => IsAvailable(SelectedIndex) ? SelectedItem : null;
 
         public int IndexOf(ItemDefinition item)
         {
@@ -75,6 +82,22 @@ namespace Lifetopia.InventorySystem
             return InventoryResult.Success;
         }
 
+        /// <summary>
+        /// Loading saves only: puts a reference back without requiring the item in the inventory
+        /// (a saved slot may point at an item whose count is 0). Rejects duplicates.
+        /// </summary>
+        internal InventoryResult Restore(int index, ItemDefinition item)
+        {
+            if (!IsValidSlot(index)) return InventoryResult.InvalidSlot;
+            if (item == null) return InventoryResult.InvalidItem;
+            int existing = IndexOf(item);
+            if (existing >= 0 && existing != index) return InventoryResult.TargetOccupied;
+            if (_items[index] == item) return InventoryResult.Success;
+            _items[index] = item;
+            SlotChanged?.Invoke(index);
+            return InventoryResult.Success;
+        }
+
         public InventoryResult ClearSlot(int index)
         {
             if (!IsValidSlot(index)) return InventoryResult.InvalidSlot;
@@ -93,16 +116,7 @@ namespace Lifetopia.InventorySystem
             return true;
         }
 
-        public void Dispose() => _inventory.Changed -= OnInventoryChanged;
-
-        private void OnInventoryChanged()
-        {
-            for (int i = 0; i < _items.Length; i++)
-            {
-                if (_items[i] == null || _inventory.HasItem(_items[i])) continue;
-                _items[i] = null;
-                SlotChanged?.Invoke(i);
-            }
-        }
+        /// <summary>Kept for API compatibility; the hotbar no longer subscribes to inventory events.</summary>
+        public void Dispose() { }
     }
 }

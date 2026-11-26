@@ -10,6 +10,7 @@ namespace Lifetopia.UI
     /// Displays one item slot (inventory, hotbar, detail preview or drag ghost) and reports
     /// clicks/taps and drag-and-drop to its owner. Holds no game state: owners call <see cref="Show"/>.
     /// Items without an icon sprite show a category-coloured placeholder tile with a short label.
+    /// Icons are resolved through <see cref="ItemIcons"/> (local art overrides by stable item ID).
     /// </summary>
     public sealed class ItemSlotView : MonoBehaviour,
         IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
@@ -31,7 +32,11 @@ namespace Lifetopia.UI
         public int Index { get; set; }
         public ItemDefinition Item { get; private set; }
 
-        public void Show(ItemDefinition item, int count, bool showCount)
+        /// <summary>Alpha used for a slot whose item count is 0 (kept on the hotbar, not usable).</summary>
+        public const float DimmedAlpha = 0.35f;
+
+        /// <param name="dimmed">Draw the item faded (e.g. hotbar reference with 0 left); the count still shows "0".</param>
+        public void Show(ItemDefinition item, int count, bool showCount, bool dimmed = false)
         {
             Item = item;
             if (icon != null)
@@ -39,16 +44,19 @@ namespace Lifetopia.UI
                 icon.enabled = item != null;
                 if (item != null)
                 {
-                    bool hasArt = item.Icon != null;
-                    icon.sprite = hasArt ? item.Icon : RoundedSprites.Get(12);
+                    Sprite art = ItemIcons.Get(item); // local override by item ID, else definition icon
+                    bool hasArt = art != null;
+                    icon.sprite = hasArt ? art : RoundedSprites.Get(12);
                     icon.type = hasArt ? Image.Type.Simple : Image.Type.Sliced;
                     icon.preserveAspect = hasArt;
-                    icon.color = hasArt ? Color.white : UiPalette.ForCategory(item.Category);
+                    Color baseColor = hasArt ? Color.white : UiPalette.ForCategory(item.Category);
+                    icon.color = dimmed ? new Color(baseColor.r, baseColor.g, baseColor.b, baseColor.a * DimmedAlpha) : baseColor;
                     if (iconLabel != null)
                     {
                         iconLabel.enabled = !hasArt;
                         iconLabel.text = hasArt ? "" : ShortLabel(item.DisplayName);
-                        iconLabel.color = UiPalette.LabelOn(icon.color);
+                        Color label = UiPalette.LabelOn(baseColor);
+                        iconLabel.color = dimmed ? new Color(label.r, label.g, label.b, label.a * DimmedAlpha) : label;
                     }
                 }
             }
@@ -56,7 +64,7 @@ namespace Lifetopia.UI
 
             if (countLabel != null)
             {
-                bool visible = item != null && showCount && item.Stackable;
+                bool visible = item != null && showCount && (item.Stackable || (dimmed && count == 0));
                 countLabel.enabled = visible;
                 if (visible) countLabel.text = count.ToString(System.Globalization.CultureInfo.InvariantCulture);
             }

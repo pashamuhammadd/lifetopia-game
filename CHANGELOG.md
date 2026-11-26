@@ -1,5 +1,19 @@
 # Changelog
 ## Unreleased
+### M3.3 Farming System + Gameplay Asset Pack 01 A/B — completed and approved by founder 2026-11-26
+- Farming (`Lifetopia.Farming`): 6 starter plots south-west of the starter house; Hoe tills (separate `Tilled` flag), Tropical Seeds plant (1 seed consumed after validation), Watering Can waters once, crop grows 120 s of active play (`IGameClock.ActivePlaySeconds`: stops while the bag/dialogue is open, on focus loss or pause; unaffected by dev speed/time jumps), harvest gives 1 Tropical Fruit. GDD stages Empty/Planted/Watered/Ready, no wilting.
+- All-or-nothing actions: no seed lost on invalid planting, no duplicate harvest, full bag keeps the crop Ready with an "Inventory full" message. Serializable `FarmFieldData` (save hook, not persisted yet).
+- Selected hotbar item decides the action; English prompts ("Till soil", "Plant seeds", "Water crop", "Growing - 1:05 left", "Harvest Tropical Fruit"); target outline and non-colour status badges (water drop / check). Keyboard E and touch Interact.
+- Gameplay Asset Pack 01: 22 of 33 PNG imported locally (8 item icons, coin/backpack/close/sun/moon/water drop/check, 3 soil, 4 pineapple stages; 64 PPU, manifest pivots). Pineapple is the visual of the existing `crop_tropical_fruit` item; no new item IDs or prices.
+- Local-only art binding: `ItemIcons` registry + `ItemIconOverrides` (by stable item ID) and `LocalArtBindings` in the local scene; tracked items/prefabs/public scene reference no local art, and FirstPlayable keeps generated placeholders.
+- Dev only: Shift+F9 adds 30 s of crop growth.
+- Review revisions: per-stage crop scale in the Inspector (ready 100 %; seed/sprout/growing about 12.5/30/67 % from measured sprite pixels); hotbar keeps a 0-count reference (dimmed "0", unusable, reactivates on refill; saves keep it); crop Sort Point Pivot for correct Y-sort with Sorting Group objects; cream disc behind status badges; farm moved to the south edge of the main path clear of tree canopies. 149 EditMode tests.
+- 30 new EditMode tests (146 total).
+- Preview deployed (approved): Local build `M3-03-20261126-1741` → `https://preview.lifetopia-play.pages.dev` (deployment `c6332a73`); production unchanged (`002b0658`).
+- Founder-reported manual playtest (Cloudflare preview + real phone): 12/12 passed (icons, seed/growth/mature sizes, till, plant, water, harvest into inventory, soil stays tilled, phone controls, no crash). Device model, browser and metrics not recorded.
+- Production: Build `M3-03-20261126-1741` (same bytes as the approved preview) deployed as `6cd1a5bf` on `https://play.lifetopiaworld.io`; rollback target `002b0658`.
+- Fix `Tools/Deploy-Web.ps1`: production deployment id was read as a list on Windows PowerShell 5.1 once two production deployments existed (false "production changed" alarm).
+- Earlier local Web builds (not deployed): Public `M3-03-20261126-1625` 8.73 MiB and Local `M3-03-20261126-1637` 9.72 MiB; local browser test of the full farming loop in real time (120 s, pause while bag open), 60 FPS desktop, 0 console errors.
 ### M3.2-D Cloudflare Web Deployment Foundation — completed and approved by founder 2026-11-26
 - Reusable PowerShell tooling (Windows PowerShell 5.1): `Tools/Build-Web.ps1` (safe Unity 6000.3.29f1 batch build: Editor-closed and single-build checks, RAM gate, build into `_incoming`, verify, then promote; never overwrites the last good build), `Tools/Verify-WebBuild.ps1` (build folder, live headers, repository secret scan) and `Tools/Deploy-Web.ps1` (preview by default; production only with `-Production -SkipBuild` and typed confirmation; artwork publication gate; allow-listed staging upload; post-deploy header checks; production unchanged check for previews; local deploy history). Settings in `Tools/WebDeploy.config.psd1`.
 - Build variants: `Local` (GameplayPrototype, local art) and `Public` (FirstPlayable placeholder via new Editor command `Lifetopia.EditorTools.WebBuildCommand.Build`).

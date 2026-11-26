@@ -115,7 +115,10 @@ namespace Lifetopia.UI
         private void Refresh(int index)
         {
             if (index < 0 || index >= slots.Length || slots[index] == null) return;
-            slots[index].Show(_hotbar.GetItem(index), _hotbar.GetCount(index), true);
+            ItemDefinition item = _hotbar.GetItem(index);
+            int count = _hotbar.GetCount(index);
+            // A reference with 0 left stays on the bar, faded with "0", until it is refilled or replaced.
+            slots[index].Show(item, count, true, item != null && count == 0);
             slots[index].SetSelected(index == _hotbar.SelectedIndex);
         }
     }

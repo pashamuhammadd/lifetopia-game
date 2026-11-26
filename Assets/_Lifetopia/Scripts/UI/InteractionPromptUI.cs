@@ -40,7 +40,23 @@ namespace Lifetopia.UI
             if (touchVisibility != null) touchVisibility.VisibilityChanged -= OnBlockedChanged;
         }
 
-        private void OnTargetChanged(IInteractable _) => Refresh();
+        private IPromptChangeNotifier _notifier;
+
+        private void OnTargetChanged(IInteractable target)
+        {
+            // Follow prompt text changes of the current target only (e.g. farm plot states).
+            if (_notifier != null) _notifier.PromptChanged -= Refresh;
+            _notifier = target as IPromptChangeNotifier;
+            if (_notifier != null) _notifier.PromptChanged += Refresh;
+            Refresh();
+        }
+
+        private void OnDestroy()
+        {
+            if (_notifier != null) _notifier.PromptChanged -= Refresh;
+            _notifier = null;
+        }
+
         private void OnBlockedChanged(bool _) => Refresh();
 
         private void Refresh()

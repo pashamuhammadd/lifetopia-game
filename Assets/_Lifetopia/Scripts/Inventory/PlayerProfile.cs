@@ -107,8 +107,9 @@ namespace Lifetopia.InventorySystem
             {
                 string id = data.hotbar[i];
                 if (string.IsNullOrEmpty(id)) continue;
+                // Restore (not Assign): a saved slot may reference an item whose count is 0.
                 if (!catalog.TryGet(id, out ItemDefinition item) || result.Hotbar.IndexOf(item) >= 0 ||
-                    !result.Hotbar.Assign(i, item).Succeeded())
+                    !result.Hotbar.Restore(i, item).Succeeded())
                 {
                     result.Dispose();
                     error = $"Hotbar slot {i}: invalid reference '{id}'.";

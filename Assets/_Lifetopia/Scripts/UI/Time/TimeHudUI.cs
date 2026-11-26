@@ -55,6 +55,16 @@ namespace Lifetopia.UI
             }
         }
 
+        /// <summary>
+        /// Replaces the period icons at runtime (order: Morning, Daytime, Sunset, Night). Used by
+        /// local-only art bindings so the tracked prefab never references local artwork.
+        /// </summary>
+        public void SetPeriodSprites(Sprite[] sprites)
+        {
+            periodSprites = sprites;
+            if (_clock != null) ShowPeriod(_clock.Period);
+        }
+
         private void ShowPeriod(TimeOfDayPeriod period)
         {
             if (periodLabel != null) periodLabel.text = ClockText.PeriodName(period);

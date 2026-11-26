@@ -67,18 +67,42 @@ namespace Lifetopia.Tests
         }
 
         [Test]
-        public void ClearsSlot_WhenItemRunsOut()
+        public void KeepsReference_WhenItemRunsOut_AndReactivatesWhenRefilled()
         {
             _inv.AddItem(_items.Seed, 2);
             _hotbar.Assign(2, _items.Seed);
+            _hotbar.Select(2);
             var changed = new List<int>();
             _hotbar.SlotChanged += i => changed.Add(i);
-            _inv.RemoveItem(_items.Seed, 1);
-            Assert.AreEqual(_items.Seed, _hotbar.GetItem(2));
-            _inv.RemoveItem(_items.Seed, 1);
-            Assert.IsNull(_hotbar.GetItem(2));
+            _inv.RemoveItem(_items.Seed, 2);
+            Assert.AreEqual(_items.Seed, _hotbar.GetItem(2), "reference kept at 0");
             Assert.AreEqual(0, _hotbar.GetCount(2));
-            CollectionAssert.AreEqual(new[] { 2 }, changed);
+            Assert.IsFalse(_hotbar.IsAvailable(2));
+            Assert.IsNull(_hotbar.SelectedAvailableItem, "a 0-count item is never usable");
+            Assert.AreEqual(_items.Seed, _hotbar.SelectedItem);
+            CollectionAssert.IsEmpty(changed, "running out does not change the slot");
+
+            _inv.AddItem(_items.Seed, 5);
+            Assert.IsTrue(_hotbar.IsAvailable(2));
+            Assert.AreEqual(5, _hotbar.GetCount(2));
+            Assert.AreEqual(_items.Seed, _hotbar.SelectedAvailableItem);
+            Assert.AreEqual(5, _inv.GetItemCount(_items.Seed), "no duplication");
+        }
+
+        [Test]
+        public void EmptiedReference_CanBeReplacedOrClearedManually()
+        {
+            _inv.AddItem(_items.Seed, 1);
+            _inv.AddItem(_items.Fish, 1);
+            _hotbar.Assign(0, _items.Seed);
+            _inv.RemoveItem(_items.Seed, 1);
+            Assert.AreEqual(InventoryResult.Success, _hotbar.Assign(0, _items.Fish));
+            Assert.AreEqual(_items.Fish, _hotbar.GetItem(0));
+            Assert.AreEqual(-1, _hotbar.IndexOf(_items.Seed));
+            _inv.AddItem(_items.Seed, 3);
+            Assert.AreEqual(-1, _hotbar.IndexOf(_items.Seed), "a replaced reference does not come back");
+            Assert.AreEqual(InventoryResult.Success, _hotbar.ClearSlot(0));
+            Assert.AreEqual(InventoryResult.ItemNotInInventory, _hotbar.Assign(1, _items.Rod), "only owned items can be assigned");
         }
 
         [Test]
@@ -198,6 +222,21 @@ namespace Lifetopia.Tests
         }
 
         [Test]
+        public void SaveData_KeepsHotbarReferenceWithZeroCount()
+        {
+            var profile = new PlayerProfile();
+            profile.Inventory.AddItem(_items.Seed, 1);
+            profile.Hotbar.Assign(3, _items.Seed);
+            profile.Inventory.RemoveItem(_items.Seed, 1);
+            string json = JsonUtility.ToJson(profile.ToData());
+            Assert.IsTrue(PlayerProfile.TryFromData(JsonUtility.FromJson<PlayerProfileData>(json), _items, out PlayerProfile loaded, out string error), error);
+            Assert.AreEqual(_items.Seed, loaded.Hotbar.GetItem(3));
+            Assert.AreEqual(0, loaded.Hotbar.GetCount(3));
+            Assert.AreEqual(0, loaded.Inventory.GetItemCount(_items.Seed));
+            profile.Dispose(); loaded.Dispose();
+        }
+
+        [Test]
         public void SaveData_RoundTripsThroughJson()
         {
             using var profile = new PlayerProfile();
@@ -247,9 +286,17 @@ namespace Lifetopia.Tests
             duplicateHotbar.hotbar[4] = "tool_hoe";
             Assert.IsFalse(PlayerProfile.TryFromData(duplicateHotbar, _items, out _, out _));
 
-            PlayerProfileData missingHotbarItem = profile.ToData();
-            missingHotbarItem.hotbar[4] = "fish_reef";
-            Assert.IsFalse(PlayerProfile.TryFromData(missingHotbarItem, _items, out _, out _));
+            // Since M3.3 a hotbar slot may keep a reference to an item with 0 left (shown dimmed):
+            // that is valid and grants nothing. Unknown IDs are still rejected.
+            PlayerProfileData zeroCountHotbarItem = profile.ToData();
+            zeroCountHotbarItem.hotbar[4] = "fish_reef";
+            Assert.IsTrue(PlayerProfile.TryFromData(zeroCountHotbarItem, _items, out PlayerProfile zeroLoaded, out _));
+            Assert.AreEqual(0, zeroLoaded.Inventory.GetItemCount(_items.Fish), "a hotbar reference never creates items");
+            zeroLoaded.Dispose();
+
+            PlayerProfileData unknownHotbarItem = profile.ToData();
+            unknownHotbarItem.hotbar[4] = "banana_boat";
+            Assert.IsFalse(PlayerProfile.TryFromData(unknownHotbarItem, _items, out _, out _));
 
             PlayerProfileData coins = profile.ToData();
             coins.coins = -1;

@@ -118,9 +118,14 @@ function Get-ProductionDeployment {
     $text = $r.Output -join "`n"
     $start = $text.IndexOf('['); $end = $text.LastIndexOf(']')
     if ($start -lt 0 -or $end -lt $start) { return $null }
-    $items = @($text.Substring($start, $end - $start + 1) | ConvertFrom-Json)
+    # Windows PowerShell 5.1 emits a JSON array from ConvertFrom-Json as ONE pipeline object, so
+    # @(... | ConvertFrom-Json) would wrap the whole list. Assign first, then index.
+    $parsed = ConvertFrom-Json -InputObject $text.Substring($start, $end - $start + 1)
+    $items = @($parsed)
     if ($items.Count -eq 0) { return $null }
-    return $items[0]
+    $first = $items[0]
+    if ($null -eq $first -or -not ($first.PSObject.Properties.Name -contains 'Id') -or ($first.Id -isnot [string])) { return $null }
+    return $first   # Wrangler lists the newest deployment first
 }
 $prod = Get-ProductionDeployment
 if ($null -eq $prod) { Stop-Deploy 'Could not read the current production deployment.' }

@@ -8260,6 +8260,79 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &615432786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 849744767}
+    m_Modifications:
+    - target: {fileID: 1802030385966952141, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_Name
+      value: FarmPlot_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8bbc25478db22642935e99961612b45, type: 3}
+--- !u!114 &615432787 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6710765277091566446, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 615432786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814c738d5e454404e8b6a6bfa8212ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Farming.FarmPlotView
+--- !u!4 &615432788 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 615432786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &669031389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8353,6 +8426,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &691115265
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 849744767}
+    m_Modifications:
+    - target: {fileID: 1802030385966952141, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_Name
+      value: FarmPlot_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8bbc25478db22642935e99961612b45, type: 3}
+--- !u!114 &691115266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6710765277091566446, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 691115265}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814c738d5e454404e8b6a6bfa8212ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Farming.FarmPlotView
+--- !u!4 &691115267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 691115265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &693027858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8522,6 +8668,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: 1838234650}
   m_ActionId: dad70c86-b58c-4b17-88ad-f5e53adf419e
+--- !u!1 &849744765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849744767}
+  - component: {fileID: 849744766}
+  m_Layer: 0
+  m_Name: Farm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &849744766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849744765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c269dd692041291469ad318a61351108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Farming.FarmFieldHost
+  config: {fileID: 11400000, guid: 013b792163f8dc44abb92aca661d432b, type: 2}
+  visuals: {fileID: 0}
+  clockHost: {fileID: 2127596769}
+  profileHost: {fileID: 2127596767}
+  detector: {fileID: 7609958809087740786}
+  plots:
+  - {fileID: 2042991895}
+  - {fileID: 1551469062}
+  - {fileID: 615432787}
+  - {fileID: 1982308835}
+  - {fileID: 691115266}
+  - {fileID: 1802660770}
+--- !u!4 &849744767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849744765}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2042991896}
+  - {fileID: 1551469063}
+  - {fileID: 615432788}
+  - {fileID: 1982308836}
+  - {fileID: 691115267}
+  - {fileID: 1802660771}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &873519000
 GameObject:
   m_ObjectHideFlags: 0
@@ -9702,6 +9910,79 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
+--- !u!1001 &1551469061
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 849744767}
+    m_Modifications:
+    - target: {fileID: 1802030385966952141, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_Name
+      value: FarmPlot_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8bbc25478db22642935e99961612b45, type: 3}
+--- !u!114 &1551469062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6710765277091566446, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 1551469061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814c738d5e454404e8b6a6bfa8212ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Farming.FarmPlotView
+--- !u!4 &1551469063 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 1551469061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1583372764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11499,6 +11780,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791647466}
   m_CullTransparentMesh: 1
+--- !u!1001 &1802660769
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 849744767}
+    m_Modifications:
+    - target: {fileID: 1802030385966952141, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_Name
+      value: FarmPlot_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8bbc25478db22642935e99961612b45, type: 3}
+--- !u!114 &1802660770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6710765277091566446, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 1802660769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814c738d5e454404e8b6a6bfa8212ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Farming.FarmPlotView
+--- !u!4 &1802660771 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 1802660769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1838234650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12309,6 +12663,152 @@ Transform:
   - {fileID: 2124967148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1982308834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 849744767}
+    m_Modifications:
+    - target: {fileID: 1802030385966952141, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_Name
+      value: FarmPlot_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8bbc25478db22642935e99961612b45, type: 3}
+--- !u!114 &1982308835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6710765277091566446, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 1982308834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814c738d5e454404e8b6a6bfa8212ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Farming.FarmPlotView
+--- !u!4 &1982308836 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 1982308834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2042991894
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 849744767}
+    m_Modifications:
+    - target: {fileID: 1802030385966952141, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_Name
+      value: FarmPlot_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8bbc25478db22642935e99961612b45, type: 3}
+--- !u!114 &2042991895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6710765277091566446, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 2042991894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814c738d5e454404e8b6a6bfa8212ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Farming.FarmPlotView
+--- !u!4 &2042991896 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4374155391644158036, guid: b8bbc25478db22642935e99961612b45, type: 3}
+  m_PrefabInstance: {fileID: 2042991894}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2095826008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13632,6 +14132,7 @@ GameObject:
   - component: {fileID: 2127596769}
   - component: {fileID: 2127596771}
   - component: {fileID: 2127596770}
+  - component: {fileID: 2127596772}
   m_Layer: 0
   m_Name: GameSystems
   m_TagString: Untagged
@@ -13762,6 +14263,21 @@ MonoBehaviour:
   sortingLayerName: World
   sortingOrder: 32767
   coverage: 1.2
+--- !u!114 &2127596772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127596763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e77d5858c8b45d469d46cfeb2c3e9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.DevTools.FarmDebugTools
+  farm: {fileID: 849744766}
+  showHelp: 1
+  growStepSeconds: 30
 --- !u!1001 &460819982891204369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14122,3 +14638,4 @@ SceneRoots:
   - {fileID: 572375016}
   - {fileID: 1529435704}
   - {fileID: 460819982891204369}
+  - {fileID: 849744767}
