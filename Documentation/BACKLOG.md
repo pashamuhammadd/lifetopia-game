@@ -6,7 +6,7 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 ## Release gates (P0)
 | ID | Item | Notes |
 |---|---|---|
-| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. |
+| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. **2026-11-26: founder-reported manual playtest on one real phone passed 10/10 functional checks** (build `M3-02-20261126-1527`). Still open: record device model + browser, cover both Android Chrome and iOS Safari, measure FPS, memory and load time |
 | G-2 | Art distribution rights review (A0 + A0-02) | **Partly decided 2026-11-26:** publishing inside Web builds on Cloudflare Pages approved by founder. PNGs, masters and backups stay out of the GitHub repository (still local-only) |
 | G-3 | Repo license decision | Public repo ≠ open source; owner decision |
 
@@ -14,7 +14,7 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 | ID | From | Item | When |
 |---|---|---|---|
 | V-1 | M3.1 | ~~Web check of the ASCII "1-5" hint fix~~ **Done 2026-11-26 in the M3.2 Web build** ("Hotbar: 1-5" shown correctly) | Closed |
-| V-2 | M3.1 | Real-phone test of inventory/hotbar touch (tap, drag & drop, backdrop over joystick, touch target sizes) — part of G-1 | Before public release |
+| V-2 | M3.1 | Real-phone test of inventory/hotbar touch (tap, drag & drop, backdrop over joystick, touch target sizes) — part of G-1. **Partly done 2026-11-26** (founder report: inventory opens/closes, hotbar selectable, UI not cut off); drag & drop and touch-target sizes not reported | Before public release |
 | V-3 | M3.1 | Gamepad test: North button toggles bag; movement blocked while open (binding exists, untested — no device) | When a gamepad is available |
 
 ## Art quality backlog (Art Bible final targets)
@@ -63,7 +63,7 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 | T-29 | P1 | Local save must store/restore `GameClockData` together with `PlayerProfileData`; no progress on load |
 | T-30 | P2 | Time-period icons are placeholder circles; art needed (sunrise, sun, sunset, moon) |
 | T-31 | P2 | In the Editor, an unfocused Editor window pauses game time in Play Mode (correct focus behaviour; remember when testing) |
-| T-32 | P2 | M3.2-D: `Public` variant build and preview deploy verified 2026-11-26; `Local` variant through `Build-Web.ps1` not yet run (same proven `-build` command) — verify on the next art build |
+| T-32 | – | ~~`Local` variant through `Build-Web.ps1`~~ done 2026-11-26 (`M3-02-20261126-1527`, deployed to preview and production) (closed) |
 | T-33 | P2 | Web caching: all files `no-cache` (ETag revalidation) because build file names have no hash. Enable "Name Files As Hashes" then serve `Build/*` as `immutable` (needs founder approval + measurement) |
 | T-34 | P2 | Preview URLs (`*.lifetopia-play.pages.dev`) are public. For private playtests consider Cloudflare Access (free tier) on preview deployments — founder decision, no paid plan |
 | T-35 | P2 | Cloudflare Pages production branch verified only indirectly (active Production deployment on `main`); confirm in dashboard Settings → Builds & deployments |

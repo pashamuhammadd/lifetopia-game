@@ -1,6 +1,6 @@
 # Changelog
 ## Unreleased
-### M3.2-D Cloudflare Web Deployment Foundation — approved by founder 2026-11-26
+### M3.2-D Cloudflare Web Deployment Foundation — completed and approved by founder 2026-11-26
 - Reusable PowerShell tooling (Windows PowerShell 5.1): `Tools/Build-Web.ps1` (safe Unity 6000.3.29f1 batch build: Editor-closed and single-build checks, RAM gate, build into `_incoming`, verify, then promote; never overwrites the last good build), `Tools/Verify-WebBuild.ps1` (build folder, live headers, repository secret scan) and `Tools/Deploy-Web.ps1` (preview by default; production only with `-Production -SkipBuild` and typed confirmation; artwork publication gate; allow-listed staging upload; post-deploy header checks; production unchanged check for previews; local deploy history). Settings in `Tools/WebDeploy.config.psd1`.
 - Build variants: `Local` (GameplayPrototype, local art) and `Public` (FirstPlayable placeholder via new Editor command `Lifetopia.EditorTools.WebBuildCommand.Build`).
 - Generated `_headers` matching the build's real compression (Brotli: `application/wasm` + `Content-Encoding: br`, `no-cache, no-transform`, `noindex`, `nosniff`); `404.html` so missing files return 404 instead of index.html.
@@ -8,6 +8,8 @@
 - Production deploys of placeholder builds blocked unless `-AllowPlaceholderProduction`; founder decisions recorded (original art allowed in Cloudflare Web builds, never in GitHub; `Local` variant for playtests).
 - Documentation: `Documentation/WEB-DEPLOYMENT.md` (build, deploy, preview, production update, rollback, troubleshooting, phone playtest). `.wrangler/` cache ignored by Git.
 - Verified: `Build-Web.ps1 -Variant Public` → `M3-02-20261126-1457` (3 m 36 s, 8.72 MiB Brotli, 0 compiler errors); founder-approved preview deployment `3d3d4263` (`https://preview.lifetopia-play.pages.dev`): correct wasm/Brotli headers, 404 for missing paths, version info shown, 0 console errors, 60 FPS, movement/hotbar/bag/clock/dialogue working; production `2cbfb971` unchanged.
+- Original-art (`Local`) build `M3-02-20261126-1527` (9.37 MiB) deployed by the founder with the scripts: preview `bf3c9624`, then production `002b0658` on `https://play.lifetopiaworld.io` (live files byte-identical to the approved build; title "Lifetopia World", version info, Brotli/wasm headers, 404 for missing paths, 0 console errors). Previous production `2cbfb971` is the rollback target.
+- Founder-reported manual playtest on a real phone (preview build `M3-02-20261126-1527`): 10/10 checks passed (Game loads; joystick works; character animation smooth; inventory opens/closes; hotbar selectable; in-game clock runs; day/night cycle works; rotate-device overlay works; UI not cut off; no crash). Device, browser, FPS, memory and duration were not recorded.
 ### M3.2 Game Time & Day/Night Cycle — approved by founder 2026-11-26
 - Central game clock (`Lifetopia.TimeSystem`): day 1 starts at 08:00, 1 game hour = 60 real seconds (24-minute day), midnight rollover with a day counter, configurable speed via `GameClockConfig`.
 - Time runs only during active play: paused while the bag or a dialogue is open, when the browser tab/window loses focus (new `WebFocusBridge.FocusGained`), at `Time.timeScale = 0`, or by any system through `PauseClock`; no offline progression; long frames are clamped.

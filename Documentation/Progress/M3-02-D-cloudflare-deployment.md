@@ -1,6 +1,6 @@
 # M3.2-D — Cloudflare Web Deployment Foundation
 
-Tanggal: 26 November 2026 · Basis: commit `79cbae8` + perubahan M3.2 yang belum di-commit · Status: **disetujui founder 26-11-2026**. Build `Public` nyata dan **satu deployment preview** (disetujui founder) berhasil. Production tidak berubah.
+Tanggal: 26 November 2026 · Basis: commit `79cbae8` + perubahan M3.2 yang belum di-commit · Status: **SELESAI, disetujui founder 26-11-2026**. Production `play.lifetopiaworld.io` = deployment `002b0658` (build original-art `M3-02-20261126-1527`), dan playtest HP nyata oleh founder lulus 10/10.
 
 Ruang lingkup hanya otomasi build/deploy Web, info versi, dan dokumentasi. M3.3 Farming tidak dimulai. `lifetopia-platform`, database, DNS, nameserver, dan custom domain tidak disentuh. Tidak ada layanan berbayar.
 
@@ -246,3 +246,57 @@ CHANGELOG, ROADMAP, BACKLOG, dan DECISIONS berisi entri M3.2 maupun M3.2-D, jadi
 5. Production deployment baru dan M3.3 tetap memerlukan persetujuan terpisah.
 
 Diterapkan di `CLAUDE.md`, `WEB-DEPLOYMENT.md`, dan `DECISIONS.md`. `Deploy-Web.ps1` sekarang menolak deploy production untuk build placeholder kecuali dengan `-AllowPlaceholderProduction`.
+
+## 11. Build Local, preview, production, dan playtest HP (26-11-2026)
+
+### 11.1 Yang dijalankan founder (dari `Builds/Web/deploy-history.csv` dan Wrangler)
+
+| Langkah | Hasil aktual |
+|---|---|
+| Build `Local` lewat `Build-Web.ps1` | `Builds/Web/M3-02-20261126-1527`. Log: "Build Finished, Result: Success", "Exiting batchmode successfully", 0 `error CS`. 9,37 MiB Brotli (data.br 2.442.686 B, wasm.br 7.271.209 B, framework.js.br 75.452 B, loader.js 26.983 B). `version.json`: v0.3.2, M3.2, 2026-11-26T08:32:02Z, commit 461ec3b, `contentMode: local-art` |
+| Preview | `bf3c9624` (branch `preview`, 08:32:41 UTC). `previousProductionId` 2cbfb971, sehingga production tidak berubah saat preview |
+| Production | `002b0658` (branch `main`, 08:39:16 UTC) lewat `Deploy-Web.ps1 -Production -SkipBuild`, setelah playtest |
+
+### 11.2 Verifikasi production oleh Claude
+
+| Cek | Hasil |
+|---|---|
+| `wrangler pages deployment list` | `002b0658 Production main 461ec3b`, `bf3c9624 Preview`, `3d3d4263 Preview`, `2cbfb971 Production` (sebelumnya) |
+| Isi live = build yang disetujui | index.html, version.json, dan 4 file Build di `play.lifetopiaworld.io`, `lifetopia-play.pages.dev`, serta preview `bf3c9624`: **MD5 identik** dengan `Builds/Web/M3-02-20261126-1527` |
+| `Verify-WebBuild.ps1 -BuildPath … -Url …` | lulus. wasm.br → `application/wasm` + `br`; framework/data `br`; path tidak ada → 404; version.json 200; judul "Lifetopia World" |
+| Browser desktop (Playwright 1280×720) | termuat 4,3 s; info versi "Development Build · v0.3.2 · M3.2 / Built 2026-11-26" dan label pojok tampil; artwork original tampil; tas terbuka; console 0 error, 6 warning engine yang sudah dikenal |
+
+### 11.3 Playtest HP nyata (founder-reported manual playtest)
+
+Dilaporkan founder pada 26-11-2026 untuk preview build `M3-02-20261126-1527`. Semua 10 cek lulus:
+
+1. Game berhasil dimuat.
+2. Joystick berfungsi dengan baik.
+3. Animasi karakter smooth.
+4. Inventory bisa dibuka dan ditutup.
+5. Hotbar bisa dipilih.
+6. Jam dalam game berjalan.
+7. Day/Night Cycle berfungsi.
+8. Overlay rotate device berfungsi.
+9. UI tidak terpotong.
+10. Tidak ada crash selama pengujian.
+
+**Tidak dicatat** (tidak diberikan): model HP, OS/browser, FPS, penggunaan RAM, waktu loading, dan durasi pengujian. Karena itu G-1 belum ditutup penuh (perlu Android Chrome + iOS Safari dengan data terukur). V-2 sebagian terpenuhi (drag & drop di HP belum dilaporkan).
+
+### 11.4 Acceptance criteria M3.2-D
+
+| Kriteria | Status |
+|---|---|
+| Audit project, deployment, header, Console | ✅ §1 |
+| M3.2 terdokumentasi dan di-commit | ✅ `6e067d1` |
+| `Build-Web.ps1` (batchmode, Editor tertutup, satu build, Local + Public, tidak menimpa build lama) | ✅ Public `…1457` dan Local `…1527` |
+| `Verify-WebBuild.ps1` (build tidak lengkap, batas ukuran, header, secret) | ✅ §6 |
+| `Deploy-Web.ps1` 3 mode, preview default, production hanya disetujui, hanya file runtime | ✅ preview `3d3d4263`/`bf3c9624`, production `002b0658` |
+| Preview tidak mengubah production | ✅ ID production tetap 2cbfb971 selama kedua preview |
+| Info versi, judul, favicon | ✅ live di production |
+| Rollback terdokumentasi | ✅ `WEB-DEPLOYMENT.md` §8 (target 2cbfb971); tidak dieksekusi |
+| Tidak ada token di repo | ✅ scan secret |
+| Tidak ada regresi gameplay M1–M3.2 | ✅ Playwright preview/production + playtest HP founder |
+| Dokumentasi | ✅ `WEB-DEPLOYMENT.md`, laporan ini, CHANGELOG, ROADMAP, BACKLOG, CLAUDE.md |
+
+**M3.2-D dinyatakan selesai.** Yang masih terbuka dan tidak memblokir: G-1 penuh (data perangkat terukur), V-2 drag & drop, V-3 gamepad, T-33 cache immutable, T-34 Access untuk preview, T-35 cek production branch di dashboard.
