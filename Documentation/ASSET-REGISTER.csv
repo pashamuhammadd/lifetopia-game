@@ -1,7 +1,10 @@
-asset_id,category,filename,direction,canvas,anchor,source,rights_status,approval_status,unity_test
-A0-01,character,char_player_male_idle_d_v01.png,D,128x128,"64:16",pending,pending,pending,not_run
-A0-02,animation,char_player_male_walk_d_v01.png,D,128x128,"64:16",pending,pending,pending,not_run
-A0-03,terrain,terrain_grass_01_v01.png,none,64x64,grid,pending,pending,pending,not_run
-A0-04,prop,prop_palm_01_v01.png,none,TBD,root,pending,pending,pending,not_run
-A0-05,building,bld_starter_house_v01.png,none,TBD,footprint,pending,pending,pending,not_run
-A0-06,ui,ui_hud_sample_v01.png,none,TBD,TBD,pending,pending,pending,not_run
+asset_id,category,filename,direction,canvas,anchor,source,rights_status,approval_status,unity_test,repo_status
+A0-01,character,Art/Characters/char_player_male_idle_d_v01.png,D,128x128,"64:16",M2 A0 static pack (generated for project),local only - distribution NOT approved,founder approved A0 static visual 2026-11-26; kept as fallback / not used by Player_A0,passed (M2-A0-static.md),not committed (local only)
+A0-02,animation,Art/Characters/Frames/idle/{d,l,r,u}/char_player_male_idle_{dir}_00..03_v01.png (16),D/L/R/U,128x128,"64:16",M2 A0-02 pack: 1 generated pose per direction + procedural anchored breathing (3 unique states),local only - distribution NOT approved,accepted for calibration 2026-11-26 (exception E2; final target in BACKLOG A-2),passed (M2-art-calibration-final.md),not committed (local only)
+A0-02,animation,Art/Characters/Frames/walk/{d,l,r,u}/char_player_male_walk_{dir}_00..07_v01.png (32),D/L/R/U,128x128,"64:16",M2 A0-02 pack: 4 generated key poses per direction held 2 slots each,local only - distribution NOT approved,accepted for calibration 2026-11-26 (exception E1; final target in BACKLOG A-1),passed (M2-art-calibration-final.md),not committed (local only)
+A0-03,terrain,Art/Terrain/terrain_grass_01_v01.png,none,64x64,grid (full rect),M2 A0 static pack,local only - distribution NOT approved,founder approved A0 static visual 2026-11-26,passed (no seams; repetition visible when zoomed),not committed (local only)
+A0-03b,terrain,Art/Terrain/terrain_path_01_v01.png,none,64x64,grid (full rect),M2 A0 static pack,local only - distribution NOT approved,founder approved A0 static visual 2026-11-26,passed (hard grass/path edge; no transition tiles yet),not committed (local only)
+A0-04,prop,Art/Props/prop_coconut_palm_v01.png,none,192x256,"0.5:0.0625 (trunk root)",M2 A0 static pack,local only - distribution NOT approved,founder approved A0 static visual 2026-11-26,passed (trunk collider; Y-sort),not committed (local only)
+A0-04b,prop,Art/Props/prop_hibiscus_shrub_v01.png,none,128x128,"0.5:0.125",M2 A0 static pack,local only - distribution NOT approved,founder approved A0 static visual 2026-11-26,passed (non-blocking),not committed (local only)
+A0-05,building,Art/Buildings/bld_starter_house_v01.png,none,384x384,"0.5:0.041667 (porch front)",M2 A0 static pack,local only - distribution NOT approved,founder approved A0 static visual 2026-11-26,passed (door ~87% of character height - noted),not committed (local only)
+A0-06,ui,Art/UI/ui_hud_panel_01_v01.png,none,128x64 (PPU 100; 9-slice 16),9-slice,M2 A0 static pack,local only - distribution NOT approved,founder approved A0 static visual 2026-11-26,passed,not committed (local only)

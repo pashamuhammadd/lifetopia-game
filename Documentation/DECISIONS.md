@@ -3,7 +3,7 @@
 ## Approved direction
 GDD 2.0 eight founder decisions remain binding. Later approved Island Explorer all-ages concept, neutral male/female base, 4-way turnaround and modular visual direction supersede earlier generic character concepts. Reference files in `reference/` are visual boards, not implementation deliverables. The character illustration should read young adult rather than child; no forced gender-locked cosmetics in future design. First prototype may use one baked male avatar; female and modular variations follow calibration. Both remain product goals.
 
-## Technical reconciliation (proposed; validate at M2)
+## Technical reconciliation (validated at M2 — see M2 calibration decisions below)
 | Topic | Original draft / later discussion | Working choice |
 | --- | --- | --- |
 | Character proportions | Art Bible 2–2.5 heads; later approved concept 2.5–3 heads | 2.5–3 heads, matching approved neutral base silhouette; calibrate at runtime |
@@ -13,7 +13,7 @@ GDD 2.0 eight founder decisions remain binding. Later approved Island Explorer a
 | Sheet rows | Art Bible D/L/R/U; later boards D/R/L/U | Canonical D,L,R,U in file order from top to bottom; explicit metadata, never infer direction from infographic labels |
 | Runtime paths | Art Bible Assets/Art/Lifetopia; later foundation plan Assets/_Lifetopia | Assets/_Lifetopia/Art/...; references outside Assets |
 | Scope | GDD vertical slice includes gameplay; later Prototype 0.1 is movement only | M1 first movement scene, M2 art calibration, M3–M4 full vertical slice |
-| Input/portrait | PC and HP from start; landscape baseline | landscape first, test mobile; portrait rotate message proposal, not final |
+| Input/portrait | PC and HP from start; landscape baseline | landscape first, test mobile; portrait rotate overlay implemented in M2 (see M2 decisions below) |
 | Rendering | sprite 2.5D, no 3D world | Built-In 2D; orthographic camera, 64 PPU, 64px tiles, Bilinear, no mipmaps initially |
 
 ## Verified repository snapshot
@@ -21,3 +21,18 @@ GitHub main checked during kit preparation: public `lifetopia-game`; ProjectVers
 
 ## Still open
 Game economy numbers, map 40x40, NPC names, time cycle 24 min, 25 MB compressed target, 30/60 FPS targets remain draft, not guarantees. License, commercial distribution rights, privacy/moderation policy and prior grant milestone alignment require owner review. No claim of production readiness or grant approval.
+
+## M2 calibration decisions — 26 November 2026 (founder approved)
+M2 is closed as a **calibration milestone** with the exceptions below. The Art Bible / table above remain the
+**final quality target**; the exceptions apply to the calibration assets only and are tracked in `BACKLOG.md`.
+
+| Topic | Calibration result (accepted) | Final target (unchanged, backlog) |
+| --- | --- | --- |
+| Walk | 4 unique key poses per direction, each held 2 slots → 8 slots at 12 fps (6 pose changes/s) | 8 unique poses per direction, 8–10 fps starting point (table above) |
+| Idle | 1 drawn pose + procedural anchored breathing (3 unique states, 4 slots at 4 fps) | 4 hand-drawn frames per direction at ~4 fps |
+| Character rendition | A0-02 is a new rendition of the same male design; minor differences from the approved A0-01 static accepted | One consistent master design for all sheets |
+| Walk vs input | Walk plays only with move intent **and** real Rigidbody speed ≥ 0.5 u/s; blocked → idle after 0.08 s; last facing kept on stop; no mirroring of L/R | Same rule |
+| Import | Single sprites, Full Rect, 64 PPU, pivot (0.5, 0.125), Bilinear, Clamp, no mipmaps, uncompressed | Sprite Atlas + compression after transparency test (backlog) |
+| Portrait | "Please rotate your device" overlay in the Web template on touch devices in portrait | Same; revisit if portrait gameplay is ever designed |
+| Real phone | Not tested; **mandatory before any public release** | Android Chrome + iOS Safari minimum |
+| Art distribution | A0/A0-02 PNGs are **local only**; never committed to a pushed branch or pushed without explicit founder approval | Owner rights review per asset |
