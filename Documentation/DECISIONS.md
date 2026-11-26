@@ -51,3 +51,25 @@ M2 is closed as a **calibration milestone** with the exceptions below. The Art B
 | Scenes | `FirstPlayable` (public greybox) carries the inventory test path; `GameplayPrototype` (copy of ArtCalibration) is local-only |
 | UI text | ASCII only in UI strings until a licensed font is bundled (built-in Web font lacks e.g. en dash) |
 | Web builds | Build once per milestone when features are stable; close the Unity Editor (or build in batchmode) on the 8 GB dev laptop |
+
+## M3.2-D deployment decisions — 26 November 2026 (founder approved)
+| Topic | Working choice |
+| --- | --- |
+| Hosting | Existing Cloudflare Pages project `lifetopia-play` (Free, Direct Upload via Wrangler); no Git integration, no auto-deploy |
+| Branches | Default deploy target `preview`; production `main` only with `-Production -SkipBuild` + typed confirmation, after founder approval |
+| Artwork | Founder approved publishing original Lifetopia World artwork inside Web builds on Cloudflare Pages (preview + production). Original PNGs, masters and backups never go to GitHub. Scripts still require `-ArtworkApproved` for non-placeholder builds as a deliberate per-deploy acknowledgement |
+| Build variants | `Local` (original art) for founder playtests and production; `Public` (placeholder) only to verify the public repository build — never replaces production (`-AllowPlaceholderProduction` guard) |
+| Current production | Keep `2cbfb971` (M3-02, manual founder deploy) until a specific replacement is approved |
+| Headers | `_headers` generated per deploy from the real compression; `no-cache, no-transform` everywhere until file names are hashed |
+| Version info | `version.json` written by `Build-Web.ps1`, shown by the Web template; `productName` (project identity) unchanged |
+| Rollback | Cloudflare dashboard "Rollback to this deployment" or redeploy an older verified build folder; never automatic |
+
+## M3.2 implementation decisions — 26 November 2026 (founder approved)
+| Topic | Working choice |
+| --- | --- |
+| Clock rules | Day 1 08:00; 60 real s per game hour (GDD); periods Morning 05–08, Daytime 08–17, Sunset 17–19, Night 19–05; speed configurable in `GameClockConfig` |
+| What stops time | Focus/visibility loss, open modal (bag, dialogue), `Time.timeScale = 0`, explicit `PauseClock` sources; no offline progression; max 0.5 s real time per frame |
+| Time source for gameplay | `IGameClock` (`TotalMinutes`, `DayChanged`, ...) only — never real-world time for crops or rewards |
+| Day/night visuals | One multiply-blended camera quad (custom `Lifetopia/DayNightMultiply` shader) on the World layer; palette authored in sRGB and converted for Linear colour space; night channels ≥ 0.55 |
+| Time format | 24-hour "HH:mm" everywhere in UI |
+| Save format | `GameClockData` (day, minute of day, active play seconds, version); restore rejects invalid data |

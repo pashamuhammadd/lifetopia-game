@@ -13,6 +13,15 @@
 - New assets under `Assets/_Lifetopia/`; keep template files intact until reviewed. Keep `.meta` files alongside tracked assets. Do not write GUIDs manually. Do not commit Library, Temp, Obj, Logs, UserSettings or build artifacts. Check `.gitignore`/`.gitattributes` rather than replacing. All PNG in existing LFS rules; monitor storage.
 - References outside Assets; do not slice presentation boards or pass them off as finished art. Use clearly labeled temporary shapes for greybox. Runtime sprite delivery needs alpha, consistent scale/pivot, source rights, naming and QC. Founder approves actual visual output before mass production.
 
+## Web build and deployment (Cloudflare Pages)
+- Follow `Documentation/WEB-DEPLOYMENT.md`. Tools: `Tools/Build-Web.ps1`, `Tools/Verify-WebBuild.ps1`, `Tools/Deploy-Web.ps1` (Windows PowerShell; settings in `Tools/WebDeploy.config.psd1`). Existing project `lifetopia-play`, production `https://play.lifetopiaworld.io` (branch `main`), previews default to branch `preview`.
+- Never deploy (preview or production) without the founder's explicit approval of that specific deployment; use `-DryRun` for testing. Never add `-ConfirmProduction`, `-AllowPlaceholderProduction` or `-IgnoreLowMemory` on your own.
+- Artwork (founder decision 2026-11-26): original Lifetopia World artwork MAY be published inside Web builds on Cloudflare Pages (preview and production), so `-ArtworkApproved` may be used for `Local` builds once that deployment is approved. Original PNGs, master artwork and backups must NEVER go to the GitHub repository (keep `.git/info/exclude`, stage explicitly, never `git add -A`, never stage `Web.asset` while it lists GameplayPrototype).
+- Build variants: deployments for founder playtesting use the `Local` variant (GameplayPrototype, original art). The `Public` variant (FirstPlayable placeholder) is only for verifying that the public repository builds; never replace production with it.
+- Keep the current production deployment unless the founder approves a specific replacement. After every preview deploy, confirm the production deployment id is unchanged and report the preview URL.
+- No new Pages projects, no DNS/domain changes, no auto-deploy, no rollback without approval. Wrangler login stays outside the repo; never store tokens.
+- 8 GB RAM laptop: Web builds only with the Editor closed, one at a time, and only when a milestone needs one; test deployment scripts with an existing build (`-SkipBuild`).
+
 ## Public repository security
 - No secrets, PAT, access/refresh tokens, private wallet keys, seed phrases, service role keys, personal data, paid assets or unreviewed master art. No real credentials even in examples or logs. Keep personal Claude/MCP config local, do not publish local port or user-specific paths. Review staged paths/diffs before proposing commit; never commit the kit archive. No production writes or schema migrations. Do not assume public repo equals open-source license. Do not apply a license without owner approval.
 
