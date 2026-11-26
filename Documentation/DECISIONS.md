@@ -52,6 +52,18 @@ M2 is closed as a **calibration milestone** with the exceptions below. The Art B
 | UI text | ASCII only in UI strings until a licensed font is bundled (built-in Web font lacks e.g. en dash) |
 | Web builds | Build once per milestone when features are stable; close the Unity Editor (or build in batchmode) on the 8 GB dev laptop |
 
+## M3.4 fishing & environment decisions — 26 November 2026 (founder approved; accepted 15/15, milestone closed)
+| Topic | Working choice |
+| --- | --- |
+| Terrain visuals | **Approved.** Dual-grid (pack contract): visual tilemap offset half a cell, tile per vertex with corner mask NW 1 / NE 2 / SE 4 / SW 8; logical tilemaps and colliders unchanged. Replaces the Art Bible N/E/S/W edge mask for these tiles |
+| Sand | Sand = path texture (C15); beach and pond rim are path cells so grass never touches water (no grass/water art). Shore masks 5/10 avoided in level design. Shoreline assembly from the pack approved |
+| Map | **Approved.** World extended south to y -15; house, farm, plaza and spawn unchanged (WorldBounds 32 x 26 at (0,-2)); beach rows y -9/-8; sea y -10..-15; 2 x 3 walkable dock at x -1..0, y -10..-12 (water collider removed under the dock) |
+| Fishing | Existing `tool_fishing_rod` (never consumed) and `fish_reef` (1 per catch); no bait/cost/rarity/RNG reward/coins. Idle → Casting 0.3 s → Wait 1.2-2.0 s → Timing (zone 28 %, marker 0.75 cycles/s) → result; 8 s limit; one press decides; one award per attempt ID. **Approved:** keep zone 28 %, marker speed and bite delay as start values; all adjustable in the Inspector (`Data/Fishing/FishingConfig.asset`). Cozy rule: failure never costs coins, items or the rod |
+| Fishing time | **Founder decision (supersedes the first draft):** game time and crop growth KEEP RUNNING while fishing, including the mini game. Movement lock and game-time pause are separate: `GameplayInputGate.Block(source, pausesGameTime)`; fishing blocks with `false`, bag/dialogue keep the default (pause time). Game time still stops on focus loss/hidden tab, `timeScale 0` and dev pause. The mini game keeps its own clock (max step 0.1 s, stops on focus loss) |
+| Public/local | Same geometry, colliders, fishing and decoration prefabs in both scenes; original art only in local scene/assets |
+| Fishing baseline | **Baseline after founder acceptance 15/15 ("difficulty feels comfortable"):** cast 0.3 s, bite delay 1.2-2.0 s, max attempt 8 s, marker 0.75 cycles/s, zone centre 0.62, zone width 0.28 (28 %), max step 0.1 s, result display 1.4 s, catch 1 `fish_reef`, rod never consumed. Stored in `Data/Fishing/FishingConfig.asset` (Inspector); changes after this need founder approval and a playtest (backlog T-50) |
+| Kept as approved | World extended to y -15; dual-grid terrain/shoreline; game time and crop growth keep running while fishing |
+
 ## M3.3 farming decisions — 26 November 2026 (founder approved, milestone closed)
 | Topic | Working choice |
 | --- | --- |

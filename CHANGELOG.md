@@ -1,5 +1,16 @@
 # Changelog
 ## Unreleased
+### M3.4 Fishing System & Environment Visual Update — closed 2026-11-26 (founder acceptance 15/15)
+- Gameplay Asset Pack 01 C/D/E: 46 PNG imported locally (SHA256 verified; 64 PPU; manifest pivots).
+- Dual-grid terrain (`Lifetopia.World.DualGridMask/DualGridPainter/DualGridTileSet`): grass/path and sand/water transitions drawn on a half-cell-offset visual tilemap from the unchanged logical tilemaps; 0 unsupported vertices.
+- Environment: market stall and info sign art (local scene), hibiscus planters, wood crate, tropical rocks, rope fences (`Prefabs/World/Env/EnvProp_*` with footprint colliders, placeholders in the public scene), dock rope posts.
+- South beach (2 sand rows), sea, sand rim around the pond, 2 x 3 walkable wooden dock; world extended south to y -15.
+- Fishing (`Lifetopia.Fishing`): select the Fishing Rod, Interact at the dock end; cast, wait for a bite, stop the moving marker in the green zone; one Reef Fish per successful attempt (existing items, no coins); too early / missed / too late / cancel lose nothing; 8 s limit; no reward duplication; inventory-full check at start and award; own focus-aware mini-game timer.
+- Fishing panel (English): status, target zone with dark boundaries, high-contrast marker, Reel In / Cancel buttons; hotbar hidden while fishing. Bobber, line, ripple and splash effects.
+- 24 new EditMode tests (173 total).
+- Founder review (2026-11-26): world extension, dual-grid and shoreline approved; **game time and crop growth keep running while fishing** — `GameplayInputGate` now separates the movement lock from the game-time pause (`Block(source, pausesGameTime)`, `TimePauseChanged`); bag and dialogue still pause time. +3 tests (176 total). Art Bible terrain rule updated to dual-grid. Local build `M3-04-20261126-2103` deployed to Preview (`5aacffc2`); production unchanged.
+- Founder acceptance (2026-11-26): founder-reported manual playtest on Cloudflare Preview incl. a real phone, **15/15 passed**; M3.4 approved. Fishing configuration fixed as baseline.
+- Builds: Public `M3-04-20261126-1844` (8.71 MiB) and Local `M3-04-20261126-1852` (9.98 MiB); Local deployed to preview `4d322ee0` (approved); production unchanged (`6cd1a5bf`).
 ### M3.3 Farming System + Gameplay Asset Pack 01 A/B — completed and approved by founder 2026-11-26
 - Farming (`Lifetopia.Farming`): 6 starter plots south-west of the starter house; Hoe tills (separate `Tilled` flag), Tropical Seeds plant (1 seed consumed after validation), Watering Can waters once, crop grows 120 s of active play (`IGameClock.ActivePlaySeconds`: stops while the bag/dialogue is open, on focus loss or pause; unaffected by dev speed/time jumps), harvest gives 1 Tropical Fruit. GDD stages Empty/Planted/Watered/Ready, no wilting.
 - All-or-nothing actions: no seed lost on invalid planting, no duplicate harvest, full bag keeps the crop Ready with an "Inventory full" message. Serializable `FarmFieldData` (save hook, not persisted yet).

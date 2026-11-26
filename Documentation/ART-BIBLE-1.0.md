@@ -98,7 +98,7 @@ Periksa onion-skin, wajah/warna tidak berubah, tidak ada jitter pivot, langkah l
 
 ### Terrain starter tiles
 
-Rumput, pasir/jalan, tanah kebun, air dangkal dan air dalam. Gunakan tile 64 × 64 px; ground top surface rata dan berulang, tanpa perspective distortion. Untuk transisi dasar grass-to-path buat 16 konfigurasi adjacency 4 arah (bitmask N=1 E=2 S=4 W=8), tambah inner corners jika seam terlihat. Uji tilemap; air tepi menggunakan set transisi terpisah.
+Rumput, pasir/jalan, tanah kebun, air dangkal dan air dalam. Gunakan tile 64 × 64 px; ground top surface rata dan berulang, tanpa perspective distortion. Transisi terrain memakai **dual-grid** (keputusan founder M3.4, 26 Nov 2026; menggantikan bitmask 4 arah N/E/S/W yang lama): tilemap visual digeser setengah sel (-0.5, -0.5) sehingga satu tile digambar per titik sudut grid, dengan corner mask NW=1, NE=2, SE=4, SW=8 (16 tile, indeks 0-15). Tilemap logis dan collider tidak berubah. Shoreline pasir-air memakai set terpisah dengan mask yang sama (0 = pasir penuh, 15 = air); pasir = tekstur jalan, jadi rumput tidak pernah bersentuhan langsung dengan air; mask diagonal 5 dan 10 dihindari dalam level design. Lihat `Documentation/Progress/M3-04-fishing.md`.
 
 ### Aset dunia dan hierarki visual
 

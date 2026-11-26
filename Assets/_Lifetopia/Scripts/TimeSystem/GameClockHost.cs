@@ -9,7 +9,8 @@ namespace Lifetopia.TimeSystem
     /// with scaled frame time (so <c>Time.timeScale = 0</c> also stops it).
     /// Time pauses while:
     /// - the browser tab/window or app loses focus (resumes when focus returns),
-    /// - a modal (inventory, dialogue) blocks gameplay through <see cref="GameplayInputGate"/>,
+    /// - a time-pausing modal (inventory, dialogue) is open — <see cref="GameplayInputGate.PausesGameTime"/>.
+    ///   Activities that only block movement (fishing) do NOT pause time,
     /// - any other system calls <see cref="PauseClock"/>.
     /// Gameplay code reads time through <see cref="Clock"/> (<see cref="IGameClock"/>).
     /// </summary>
@@ -18,7 +19,7 @@ namespace Lifetopia.TimeSystem
     public sealed class GameClockHost : MonoBehaviour
     {
         [SerializeField] private GameClockConfig config;
-        [Tooltip("Optional. While it is blocked (inventory, dialogue) the clock is paused.")]
+        [Tooltip("Optional. While a time-pausing modal is open (inventory, dialogue) the clock is paused; movement-only blocks (fishing) keep time running.")]
         [SerializeField] private GameplayInputGate gate;
         [SerializeField] private bool pauseWhileModalOpen = true;
         [SerializeField] private bool pauseOnFocusLoss = true;
@@ -54,8 +55,8 @@ namespace Lifetopia.TimeSystem
             WebFocusBridge.FocusGained += OnFocusGained;
             if (gate != null)
             {
-                gate.BlockedChanged += OnGateChanged;
-                OnGateChanged(gate.IsBlocked);
+                gate.TimePauseChanged += OnGateChanged;
+                OnGateChanged(gate.PausesGameTime);
             }
             _subscribed = true;
         }
@@ -65,7 +66,7 @@ namespace Lifetopia.TimeSystem
             if (!_subscribed) return;
             WebFocusBridge.FocusLost -= OnFocusLost;
             WebFocusBridge.FocusGained -= OnFocusGained;
-            if (gate != null) gate.BlockedChanged -= OnGateChanged;
+            if (gate != null) gate.TimePauseChanged -= OnGateChanged;
             _subscribed = false;
         }
 
@@ -110,10 +111,10 @@ namespace Lifetopia.TimeSystem
 
         private void OnFocusGained() => Runner.Pause.Resume(FocusSource);
 
-        private void OnGateChanged(bool blocked)
+        private void OnGateChanged(bool pausesTime)
         {
             if (gate == null) return;
-            Runner.Pause.Set(gate, pauseWhileModalOpen && blocked);
+            Runner.Pause.Set(gate, pauseWhileModalOpen && pausesTime);
         }
     }
 }

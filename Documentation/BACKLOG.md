@@ -6,7 +6,7 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 ## Release gates (P0)
 | ID | Item | Notes |
 |---|---|---|
-| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. **2026-11-26: founder-reported manual playtest on one real phone passed 10/10 functional checks** (build `M3-02-20261126-1527`). Still open: record device model + browser, cover both Android Chrome and iOS Safari, measure FPS, memory and load time **2026-11-26 (M3.3): founder-reported phone playtest of farming 12/12 passed;** device performance measurement (model, browser, FPS, memory, load time) still open (founder request) |
+| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. **2026-11-26: founder-reported manual playtest on one real phone passed 10/10 functional checks** (build `M3-02-20261126-1527`). Still open: record device model + browser, cover both Android Chrome and iOS Safari, measure FPS, memory and load time **2026-11-26 (M3.3): founder-reported phone playtest of farming 12/12 passed;** device performance measurement (model, browser, FPS, memory, load time) still open (founder request). **2026-11-26 (M3.4): founder-reported Preview playtest incl. real phone 15/15 passed;** device performance measurement and **iOS Safari test** still open (founder request) |
 | G-2 | Art distribution rights review (A0 + A0-02) | **Partly decided 2026-11-26:** publishing inside Web builds on Cloudflare Pages approved by founder. PNGs, masters and backups stay out of the GitHub repository (still local-only) |
 | G-3 | Repo license decision | Public repo ≠ open source; owner decision |
 
@@ -72,9 +72,16 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 | T-38 | P3 | Crops now use Sort Point **Pivot** (consistent with Sorting Group roots of player/house/trees). Remaining loose world sprites (e.g. shop placeholder parts) still use Center; review when they get art |
 | T-39 | – | ~~Hotbar slot cleared when a stack runs out~~ changed 2026-11-26: reference kept, dimmed with 0, reactivates on refill (closed) |
 | T-40 | – | ~~Tree canopy over plots~~ farm moved to the south edge of the main path (x -12..-10, y -1.5/-2.5) in both scenes (closed) |
-| T-41 | P1 | Plot data persistence (founder request 2026-11-26, confirmed at M3.3 close): farm state is not saved yet; `FarmFieldHost.CaptureState/TryRestoreState` ready for the local save milestone (with `GameClockData`, `PlayerProfileData`) |
+| T-41 | P1 | Plot data persistence (founder request 2026-11-26, confirmed at M3.3 close) — kept at M3.4 close as **progress save** (inventory, hotbar, coins, clock, farm plots; fishing has no state to save): farm state is not saved yet; `FarmFieldHost.CaptureState/TryRestoreState` ready for the local save milestone (with `GameClockData`, `PlayerProfileData`) |
 | T-42 | P2 | Action animations for hoe, watering can and harvest (character + crop), floating reward; currently a short scale pulse + toast (founder request 2026-11-26) |
 | T-45 | P2 | Sound effects for till, plant, water, harvest and "inventory full" (with mute option, GDD feedback) (founder request 2026-11-26) |
+| T-46 | P2 | Fishing character animation (cast/reel); now idle pose + line, bobber, ripple, splash only (kept at M3.4 close; together with T-42 farming action animations) |
+| T-46b | P2 | Fishing sound effects (cast, bite, reel, catch, fail); none yet (kept at M3.4 close; together with T-45 farming SFX) |
+| T-47 | P2 | Gamepad for fishing (South = reel in via UiSubmit, Start = cancel) — bindings exist, untested (no device); part of V-3 (kept at M3.4 close) |
+| T-48 | P3 | Use of deep water: `water_deep` imported as reserve only; deep/shallow transition art and level use needed |
+| T-49 | P3 | Beach sand reuses the path texture (C15); dedicated sand/grass transition and beach decoration could follow |
+| T-50 | P2 | Fishing mini-game balancing after playtest (zone width/position, marker speed, bite delay); start values approved, all in Inspector |
+| T-51 | P3 | "INFO" label on the sign is still the placeholder TextMesh positioned on the board art |
 | T-43 | P2 | Gameplay Pack 01 sprites imported uncompressed for calibration; atlas + compression after review (see T-23) |
 | T-44 | P3 | Virtual joystick can cover the left plot column when the farm is at the left screen edge on phones |
 | T-19 | P2 | `Data/` is now partly public (`Data/Items`); `Data/Characters` stays local — keep `.git/info/exclude` in sync |
