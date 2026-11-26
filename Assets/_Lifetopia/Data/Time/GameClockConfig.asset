@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c053b6e2a974fbd4b87eb3681fd1e249, type: 3}
+  m_Name: GameClockConfig
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.TimeSystem.GameClockConfig
+  settings:
+    startDay: 1
+    startMinuteOfDay: 480
+    realSecondsPerGameHour: 60
+    maxStepSeconds: 0.5
+    morningStartMinute: 300
+    daytimeStartMinute: 480
+    sunsetStartMinute: 1020
+    nightStartMinute: 1140

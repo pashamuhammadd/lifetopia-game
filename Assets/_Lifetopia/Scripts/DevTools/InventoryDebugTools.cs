@@ -33,6 +33,7 @@ namespace Lifetopia.DevTools
         {
             Keyboard k = Keyboard.current;
             if (k == null || host == null) return;
+            if (k.shiftKey.isPressed) return; // Shift + F-keys belong to TimeDebugTools
             if (k.f1Key.wasPressedThisFrame) Give(seed, 1);
             if (k.f2Key.wasPressedThisFrame) Take(seed, 1);
             if (k.f3Key.wasPressedThisFrame) Give(fish, 1);

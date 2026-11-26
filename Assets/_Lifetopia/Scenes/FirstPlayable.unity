@@ -567,6 +567,7 @@ RectTransform:
   - {fileID: 1278030501}
   - {fileID: 1920038794}
   - {fileID: 1743803440}
+  - {fileID: 1363311416}
   - {fileID: 1434473487}
   - {fileID: 1791647467}
   m_Father: {fileID: 1529435704}
@@ -9128,6 +9129,112 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: 1838234650}
   m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
+--- !u!1001 &1363311415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 266942935}
+    m_Modifications:
+    - target: {fileID: 925699690175413268, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: clockHost
+      value: 
+      objectReference: {fileID: 2127596769}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -226
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192172873886287367, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+      propertyPath: m_Name
+      value: TimeHUD
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+--- !u!224 &1363311416 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4139233264168151782, guid: a014138c6f8e00d4891f8281e94f0439, type: 3}
+  m_PrefabInstance: {fileID: 1363311415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1434473486
 GameObject:
   m_ObjectHideFlags: 0
@@ -13522,6 +13629,9 @@ GameObject:
   - component: {fileID: 2127596765}
   - component: {fileID: 2127596767}
   - component: {fileID: 2127596768}
+  - component: {fileID: 2127596769}
+  - component: {fileID: 2127596771}
+  - component: {fileID: 2127596770}
   m_Layer: 0
   m_Name: GameSystems
   m_TagString: Untagged
@@ -13603,6 +13713,55 @@ MonoBehaviour:
   material: {fileID: 11400000, guid: 5b1e486c4a980af49b0af6c737d84c58, type: 2}
   furniture: {fileID: 11400000, guid: 7a7a93de6bb36ea4380717518afdb2ca, type: 2}
   showHelp: 1
+--- !u!114 &2127596769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127596763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcea31fb864de04488695429601cf3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.TimeSystem.GameClockHost
+  config: {fileID: 11400000, guid: a87c13152a234e24e8fe75806c6fa706, type: 2}
+  gate: {fileID: 2127596764}
+  pauseWhileModalOpen: 1
+  pauseOnFocusLoss: 1
+--- !u!114 &2127596770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127596763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea4e2980001bcc4abc91e8de690e746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.DevTools.TimeDebugTools
+  clockHost: {fileID: 2127596769}
+  showHelp: 1
+--- !u!114 &2127596771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127596763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2004fd5dc98727a4ca5049c3fae18941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.TimeSystem.DayNightOverlay
+  clockHost: {fileID: 2127596769}
+  palette: {fileID: 11400000, guid: fcca426f49820944dbd1f627b6f776fc, type: 2}
+  overlayMaterial: {fileID: 2100000, guid: 389af4a06f0e4384b9fcf1727bbcc9a2, type: 2}
+  targetCamera: {fileID: 268632108}
+  sortingLayerName: World
+  sortingOrder: 32767
+  coverage: 1.2
 --- !u!1001 &460819982891204369
 PrefabInstance:
   m_ObjectHideFlags: 0
