@@ -1,5 +1,15 @@
 # Changelog
 ## Unreleased
+### M3.5 Market & Economy — closed 2026-11-26 (founder acceptance 16/16)
+- NPC Asset Pack 01: 17 runtime PNG imported locally (PPU 64, feet pivot 0.5/0.125, bilinear, no mipmaps); Reference/ReferenceReuse not imported (existing item/coin icons reused).
+- Rio (`Lifetopia.Npc`: `NpcView`, `NpcVisualSet`, `MerchantNpc`): static merchant in front of the market stall, foot collider, Y-sorted like the player, turns to face the player; placeholder "Rio (TEMP)" in the public scene. Maya and Kai not placed.
+- Rio's Market (`MarketPanelUI`, `MarketItemRowView`): Buy/Sell tabs, real item icons, owned count, unit price, quantity - / + / Max, total, balance after, Purchase/Sell, Close, success/failure text; keyboard (W/S, A/D, Tab, E, Esc), mouse and touch; responsive landscape.
+- Economy (`Lifetopia.Economy`: `MarketConfig`, `MarketService`, `MarketText`): atomic trades on the existing wallet and inventory; seed buy 10, fruit sell 18, fish sell 12 (prices from item assets); handles not enough coins, inventory full incl. partial stacks, not enough items, invalid/overflow quantities, coin cap, re-entrancy and double submission. Hotbar 0-count seed reference becomes usable again after buying (M3.3 behaviour).
+- Market pauses game time and blocks movement like the bag; restored on close.
+- `PlayerInputReader.NavigateInput` for menu navigation while movement is locked.
+- 28 new EditMode tests (204 total).
+- Local build `M3-05-20261126-2211` deployed to Preview (`ad464534`); production unchanged (`5784f2eb`).
+- Founder acceptance (2026-11-26): founder-reported manual playtest on Cloudflare Preview incl. a real phone, **16/16 passed**; M3.5 approved. Prices fixed as baseline (seed buy 10, fruit sell 18, fish sell 12).
 ### M3.4 Fishing System & Environment Visual Update — closed 2026-11-26 (founder acceptance 15/15)
 - Gameplay Asset Pack 01 C/D/E: 46 PNG imported locally (SHA256 verified; 64 PPU; manifest pivots).
 - Dual-grid terrain (`Lifetopia.World.DualGridMask/DualGridPainter/DualGridTileSet`): grass/path and sand/water transitions drawn on a half-cell-offset visual tilemap from the unchanged logical tilemaps; 0 unsupported vertices.

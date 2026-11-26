@@ -74,7 +74,7 @@ Karakter berjalan di depan/belakang pohon dan rumah tanpa pop/lompatan sorting. 
 
 ### Desain karakter
 
-Proporsi 2–2,5 kepala; wajah besar, badan kecil, tangan dan kaki jelas; ekspresi hangat. Satu avatar awal dengan pakaian tropis sederhana. NPC Maya, Rio dan Kai berbeda siluet, warna pakaian, rambut, serta aksesori. Gender dan variasi tubuh/pakaian ditambah setelah base style konsisten.
+Proporsi 2–2,5 kepala; wajah besar, badan kecil, tangan dan kaki jelas; ekspresi hangat. Satu avatar awal dengan pakaian tropis sederhana. NPC Maya, Rio dan Kai berbeda siluet, warna pakaian, rambut, serta aksesori. (M3.5: desain Rio, Maya dan Kai disetujui founder; sprite runtime 128 × 128 px, PPU 64, pivot kaki (0.5, 0.125) sama dengan pemain, 4 arah statis D/L/R/U + portrait 256 × 256; Y-sort lewat SortingGroup layer World seperti pemain. Rio lulus founder acceptance M3.5: ukuran sesuai pemain, posisi di depan kios.) Gender dan variasi tubuh/pakaian ditambah setelah base style konsisten.
 
 | Animasi | Frame / arah | Standar |
 | --- | --- | --- |

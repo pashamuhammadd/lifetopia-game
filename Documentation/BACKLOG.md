@@ -6,7 +6,7 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 ## Release gates (P0)
 | ID | Item | Notes |
 |---|---|---|
-| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. **2026-11-26: founder-reported manual playtest on one real phone passed 10/10 functional checks** (build `M3-02-20261126-1527`). Still open: record device model + browser, cover both Android Chrome and iOS Safari, measure FPS, memory and load time **2026-11-26 (M3.3): founder-reported phone playtest of farming 12/12 passed;** device performance measurement (model, browser, FPS, memory, load time) still open (founder request). **2026-11-26 (M3.4): founder-reported Preview playtest incl. real phone 15/15 passed;** device performance measurement and **iOS Safari test** still open (founder request) |
+| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. **2026-11-26: founder-reported manual playtest on one real phone passed 10/10 functional checks** (build `M3-02-20261126-1527`). Still open: record device model + browser, cover both Android Chrome and iOS Safari, measure FPS, memory and load time **2026-11-26 (M3.3): founder-reported phone playtest of farming 12/12 passed;** device performance measurement (model, browser, FPS, memory, load time) still open (founder request). **2026-11-26 (M3.4): founder-reported Preview playtest incl. real phone 15/15 passed;** device performance measurement and **iOS Safari test** still open (founder request). **2026-11-26 (M3.5): founder-reported Preview playtest incl. real phone 16/16 passed;** device performance measurement and iOS Safari still open (kept at M3.5 close) |
 | G-2 | Art distribution rights review (A0 + A0-02) | **Partly decided 2026-11-26:** publishing inside Web builds on Cloudflare Pages approved by founder. PNGs, masters and backups stay out of the GitHub repository (still local-only) |
 | G-3 | Repo license decision | Public repo ≠ open source; owner decision |
 
@@ -84,6 +84,11 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 | T-51 | P3 | "INFO" label on the sign is still the placeholder TextMesh positioned on the board art |
 | T-43 | P2 | Gameplay Pack 01 sprites imported uncompressed for calibration; atlas + compression after review (see T-23) |
 | T-44 | P3 | Virtual joystick can cover the left plot column when the farm is at the left screen edge on phones |
+| T-52 | P1 | Local progress save must include coins and market results (part of T-41); reload still resets the session (kept at M3.5 close) |
+| T-53 | P3 | Rio/NPC idle breathing (optional, feet fixed) and a small trade animation/feedback; with T-42/T-46 character action animations (kept at M3.5 close) |
+| T-54 | P2 | Market sound effects (buy, sell, refused) with the mute option (with T-45/T-46b) (kept at M3.5 close) |
+| T-55 | P2 | (kept at M3.5 close) Gamepad for the market (stick = navigate, South = confirm, Start = close; Tab has no gamepad equivalent yet); part of V-3 |
+| T-56 | P3 | Place Maya and Kai (assets imported locally, not in game) in a later milestone |
 | T-19 | P2 | `Data/` is now partly public (`Data/Items`); `Data/Characters` stays local — keep `.git/info/exclude` in sync |
 
 ## Item icons to produce (M3.1, Art Bible §05: 128×128, 12 px padding)

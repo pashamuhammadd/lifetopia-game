@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51610302d759afe45b0448f3e9a3cada, type: 3}
+  m_Name: MarketConfig_Rio
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Economy.MarketConfig
+  shopName: Rio's Market
+  greeting: Welcome, traveler!
+  buyItems:
+  - {fileID: 11400000, guid: 798247ddf8a98c04985fd803ea686c15, type: 2}
+  sellItems:
+  - {fileID: 11400000, guid: 396076ad2ed64f34fa4962594176a558, type: 2}
+  - {fileID: 11400000, guid: ccf40fdcafe0c77448ab1d4d0c7bf9cb, type: 2}
+  maxQuantityPerTrade: 99

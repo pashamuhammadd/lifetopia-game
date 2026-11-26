@@ -50,6 +50,12 @@ namespace Lifetopia.Controls
         /// <summary>Clamped movement intent in the range |v| ≤ 1.</summary>
         public Vector2 Move { get; private set; }
 
+        /// <summary>
+        /// Same keys/stick/joystick as <see cref="Move"/> but NOT zeroed while a modal blocks gameplay,
+        /// so open menus (market) can use WASD/arrows for navigation. Never moves the player.
+        /// </summary>
+        public Vector2 NavigateInput { get; private set; }
+
         /// <summary>Number of times held input was force-released (focus loss). Useful for tests.</summary>
         public int FocusResetCount { get; private set; }
 
@@ -78,6 +84,7 @@ namespace Lifetopia.Controls
             if (interactButton != null) interactButton.Pressed -= OnTouchInteract;
             WebFocusBridge.FocusLost -= ReleaseAllInput;
             Move = Vector2.zero;
+            NavigateInput = Vector2.zero;
         }
 
         private void Update()
@@ -86,7 +93,8 @@ namespace Lifetopia.Controls
                 ? joystick.Value
                 : (moveAction != null ? moveAction.action.ReadValue<Vector2>() : Vector2.zero);
 
-            Move = IsBlocked ? Vector2.zero : MovementMath.ClampInput(raw, deadZone);
+            NavigateInput = MovementMath.ClampInput(raw, deadZone);
+            Move = IsBlocked ? Vector2.zero : NavigateInput;
 
             if (interactAction != null && interactAction.action.WasPressedThisFrame()) RaiseInteract();
             if (cancelAction != null && cancelAction.action.WasPressedThisFrame()) CancelPerformed?.Invoke();
@@ -108,6 +116,7 @@ namespace Lifetopia.Controls
         {
             FocusResetCount++;
             Move = Vector2.zero;
+            NavigateInput = Vector2.zero;
             if (joystick != null) joystick.ResetInput();
             foreach (InputDevice device in InputSystem.devices)
             {

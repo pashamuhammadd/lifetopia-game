@@ -17,8 +17,8 @@
     MinFreeMemoryGB  = 1.5
 
     # Version information shown on the loading screen (version.json).
-    GameVersion      = '0.3.4'
-    Milestone        = 'M3.4'
+    GameVersion      = '0.3.5'
+    Milestone        = 'M3.5'
     Channel          = 'Development Build'
 
     # Cloudflare Pages (existing project; the scripts never create projects or change domains).

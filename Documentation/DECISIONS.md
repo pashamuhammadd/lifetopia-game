@@ -52,6 +52,18 @@ M2 is closed as a **calibration milestone** with the exceptions below. The Art B
 | UI text | ASCII only in UI strings until a licensed font is bundled (built-in Web font lacks e.g. en dash) |
 | Web builds | Build once per milestone when features are stable; close the Unity Editor (or build in batchmode) on the 8 GB dev laptop |
 
+## M3.5 market & economy decisions — 26 November 2026 (founder approved; accepted 16/16, milestone closed)
+| Topic | Working choice |
+| --- | --- |
+| Economy core | `MarketService` trades on the existing `Wallet` + `Inventory` (no parallel currency/bag). Atomic: full validation (listed item, quantity 1-99, coins, free space incl. partial stacks, owned count, coin cap 9,999,999, 64-bit totals) then change with rollback; re-entrant trades refused |
+| Prices | Unit prices come from item assets (`BuyPrice`/`SellPrice`, single source): seed_tropical buy 10, crop_tropical_fruit sell 18, fish_reef sell 12. `MarketConfig_Rio` lists only which items are bought/sold. Unlimited stock, no fees, no opening hours, no buy-back of seeds/tools |
+| Starting state | 100 coins + 3 seeds + hoe/can/rod per new session (unchanged `StarterProfile`); no save yet, reload resets the session |
+| Market UX | Interact near Rio opens "Rio's Market" directly (greeting in header). Menu modal: blocks movement/world interaction and pauses game time like the bag; hides hotbar; backdrop blocks joystick. One confirm per frame + 0.25 s cooldown |
+| Rio | Static NPC in front of the market stall (10.05, 1.55), foot collider 0.6 x 0.3, same pivot/PPU/sorting as the player, faces the player on interact. Maya/Kai assets kept local, not placed |
+| Public/local | Same prefabs (`Npc_Rio`, `MarketPanel`) and config in both scenes; original NPC sprites, portrait and market icons bound only in the local scene |
+| Economy baseline | **Approved after founder acceptance 16/16:** seed_tropical buy 10, crop_tropical_fruit sell 18, fish_reef sell 12 (item assets); start 100 coins + 3 seeds + tools; max 99 per trade; 0.25 s confirm cooldown; unlimited stock, no fees/hours. Changes need founder approval and a playtest |
+| Kept as approved | Rio in front of the stall; Interact opens the market directly; greeting "Welcome, traveler!" in the header; market pauses game time like the bag |
+
 ## M3.4 fishing & environment decisions — 26 November 2026 (founder approved; accepted 15/15, milestone closed)
 | Topic | Working choice |
 | --- | --- |
