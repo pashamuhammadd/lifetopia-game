@@ -253,5 +253,18 @@ Perluasan peta sampai y −15; dual-grid terrain/shoreline; game time & pertumbu
 ### 13.5 Backlog yang dipertahankan
 T-41 penyimpanan progres · T-42/T-46 animasi aksi farming & fishing · T-45/T-46b sound effects · V-3/T-47 gamepad · G-1 pengukuran performa perangkat + Safari iOS · T-48 air dalam · T-50 balancing mini game.
 
-### 13.6 Commit, push & production
-(diisi setelah commit dan deploy — lihat di bawah)
+### 13.6 Commit, push & production (disetujui founder)
+| Item | Nilai |
+|---|---|
+| Commit M3.4 | **`7a7ee0b`** `feat(m3.4): fishing system, dual-grid terrain, beach and dock, environment props` — 56 file di-stage eksplisit, di-push ke `origin/main` (`0f35061..7a7ee0b`). Commit docs penutupan menyusul (lihat `git log`) |
+| Pemeriksaan sebelum commit | GUID: 401 file publik, 0 tidak ter-resolve (tidak ada referensi ke art lokal); tidak ada PNG/master art/screenshot/backup/build/scene privat yang di-stage (`Web.asset` tetap lokal); scan secret/kredensial/path pribadi bersih |
+| Build ID | **`M3-04-20261126-2103`** (build yang sama dengan preview `5aacffc2` yang diuji founder; tidak di-build ulang). `version.json` menulis `commit 0f35061, dirty true` karena build dibuat sebelum commit; isi kode = commit `7a7ee0b` |
+| Identitas file | MD5 wasm.br, data.br, framework.js.br, loader.js, index.html, version.json: folder build = preview `5aacffc2` = production — **identik** |
+| Command | `.\Tools\Deploy-Web.ps1 -Production -SkipBuild -BuildPath "Builds/Web/M3-04-20261126-2103" -ArtworkApproved -ConfirmProduction lifetopia-play` (konfirmasi production non-interaktif, seperti M3.3) |
+| Deployment production | **`5784f2eb-e02f-4972-b648-063ba650cf31`** (https://5784f2eb.lifetopia-play.pages.dev); `wrangler pages deployment list` production terbaru = `5784f2eb` (source `7a7ee0b`) |
+| Rollback target | **`6cd1a5bf`** (M3.3, build `M3-03-20261126-1741`) — prosedur di `WEB-DEPLOYMENT.md` §8 |
+| Verifikasi | Pemeriksaan pertama skrip: custom domain sesaat 404 untuk 2 file (propagasi edge), URL deployment & pages.dev 200. ±1 menit kemudian: semua 200; `Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.io` **lulus**; `version.json` = `M3-04-20261126-2103` v0.3.4 M3.4; header wasm `application/wasm` + `br`, `no-cache, no-transform`, `nosniff`, `noindex`; path tidak ada → 404 |
+| Gameplay production (desktop 1280×720, browser otomatis) | 60,4 FPS, 0 error (6 warning engine yang dikenal); jalan ke dermaga, pilih rod, E → panel "Reel in!" + pelampung; percobaan dibiarkan habis → rod & coin 100 tetap; jam berjalan (08:13 → 08:23); tas terbuka (B) berisi alat & bibit. Screenshot lokal `v2_prod_fishing`, `v2_prod_bag` |
+| Tidak diuji Claude di production | HP nyata, Safari iOS, gamepad, pengukuran performa perangkat |
+
+**M3.4 ditutup 26-11-2026.** M3.5 Market & Economy **belum dimulai** — founder akan mendesain sistem ekonomi dan menyiapkan aset NPC terlebih dahulu.
