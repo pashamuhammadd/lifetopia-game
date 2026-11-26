@@ -10,6 +10,7 @@
 - 28 new EditMode tests (204 total).
 - Local build `M3-05-20261126-2211` deployed to Preview (`ad464534`); production unchanged (`5784f2eb`).
 - Founder acceptance (2026-11-26): founder-reported manual playtest on Cloudflare Preview incl. a real phone, **16/16 passed**; M3.5 approved. Prices fixed as baseline (seed buy 10, fruit sell 18, fish sell 12).
+- Released: code commit `4bc582f`; production deployment `94abb7f9` of build `M3-05-20261126-2211` (identical to the accepted preview `ad464534`); rollback target `5784f2eb` (M3.4). Public Web Build for M3.5 not produced (public scene verified in the Editor only).
 ### M3.4 Fishing System & Environment Visual Update — closed 2026-11-26 (founder acceptance 15/15)
 - Gameplay Asset Pack 01 C/D/E: 46 PNG imported locally (SHA256 verified; 64 PPU; manifest pivots).
 - Dual-grid terrain (`Lifetopia.World.DualGridMask/DualGridPainter/DualGridTileSet`): grass/path and sand/water transitions drawn on a half-cell-offset visual tilemap from the unchanged logical tilemaps; 0 unsupported vertices.

@@ -16,7 +16,7 @@ Berlaku sejak M3.2-D (26 November 2026). Semua command dijalankan dari root repo
 
 ## 1. Infrastruktur yang sudah ada
 
-**Status saat ini (26-11-2026, M3.4):** production `https://play.lifetopiaworld.io` = deployment `5784f2eb`, Build `M3-04-20261126-2103` (varian Local, artwork original, v0.3.4 M3.4; kode di commit `7a7ee0b`). Preview yang diuji founder: `5aacffc2` (build yang sama, acceptance 15/15). Rollback target: `6cd1a5bf` (M3.3, build `M3-03-20261126-1741`), lalu `002b0658` (M3.2), lalu `2cbfb971`.
+**Status saat ini (26-11-2026, M3.5):** production `https://play.lifetopiaworld.io` = deployment `94abb7f9`, Build `M3-05-20261126-2211` (varian Local, artwork original, v0.3.5 M3.5; kode di commit `4bc582f`). Preview yang diuji founder: `ad464534` (build yang sama, acceptance 16/16). Rollback target: `5784f2eb` (M3.4, build `M3-04-20261126-2103`), lalu `6cd1a5bf` (M3.3), lalu `002b0658` (M3.2).
 
 | Item | Nilai |
 |---|---|
@@ -202,7 +202,8 @@ Wrangler 4.168 **tidak** punya perintah rollback Pages. Dua cara (keduanya butuh
 **A. Dashboard (instan, disarankan):**
 Cloudflare Dashboard → Workers & Pages → `lifetopia-play` → tab *Deployments* → pada deployment **Production** sebelumnya klik menu `⋯` → *Rollback to this deployment* → konfirmasi. Domain production langsung melayani deployment lama.
 - Hanya deployment production sebelumnya yang bisa menjadi target. ID-nya ada di `deploy-history.csv` (kolom `previousProductionId`) dan di `wrangler pages deployment list --project-name lifetopia-play --environment production`.
-- Status 26-11-2026 (M3.4): production = `5784f2eb` (build `M3-04-20261126-2103`). Target rollback = **`6cd1a5bf`** (M3.3, build `M3-03-20261126-1741`), lalu `002b0658` (M3.2), lalu `2cbfb971`. Folder build tersimpan di `Builds/Web/`.
+- Status 26-11-2026 (M3.5): production = `94abb7f9` (build `M3-05-20261126-2211`). Target rollback = **`5784f2eb`** (M3.4, build `M3-04-20261126-2103`), lalu `6cd1a5bf` (M3.3), lalu `002b0658` (M3.2). Folder build tersimpan di `Builds/Web/`.
+- **Rollback M3.5 → M3.4** (hanya dengan persetujuan founder): Dashboard → `lifetopia-play` → Deployments → deployment Production `5784f2eb` → `⋯` → *Rollback to this deployment*. Alternatif deploy ulang build yang sama: `.\Tools\Deploy-Web.ps1 -Production -SkipBuild -BuildPath Builds/Web/M3-04-20261126-2103 -ArtworkApproved` (konfirmasi production diketik). Lalu cek `https://play.lifetopiaworld.io/version.json` = `M3-04-20261126-2103`. Rollback hanya mengembalikan Web build; repo GitHub tetap di commit M3.5.
 - **Rollback M3.4 → M3.3** (hanya dengan persetujuan founder): Dashboard → `lifetopia-play` → Deployments → deployment Production `6cd1a5bf` → `⋯` → *Rollback to this deployment*. Alternatif lewat deploy ulang build yang sama: `.\Tools\Deploy-Web.ps1 -Production -SkipBuild -BuildPath Builds/Web/M3-03-20261126-1741 -ArtworkApproved` (konfirmasi production diketik). Lalu cek `https://play.lifetopiaworld.io/version.json` = `M3-03-20261126-1741`. Catatan: rollback hanya mengembalikan Web build; repo GitHub tetap di commit M3.4.
 
 **B. Deploy ulang build lama:**
@@ -226,7 +227,7 @@ Setelah rollback: `.\Tools\Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.
 
 ## 10. Troubleshooting
 
-- **Custom domain sesaat setelah deploy production (M3.4, 26-11-2026):** pemeriksaan otomatis pertama di `play.lifetopiaworld.io` sempat mendapat 404 untuk `framework.js.br` dan `loader.js`, sementara URL deployment langsung dan `lifetopia-play.pages.dev` sudah 200 semua. Sekitar 1 menit kemudian semua file 200, `Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.io` lulus, dan isi file identik dengan build. Penyebab: jeda propagasi edge custom domain. Tindakan: tunggu ±1 menit lalu jalankan ulang verifikasi; jangan langsung rollback.
+- **Custom domain sesaat setelah deploy production (M3.4, 26-11-2026):** pemeriksaan otomatis pertama di `play.lifetopiaworld.io` sempat mendapat 404 untuk `framework.js.br` dan `loader.js`, sementara URL deployment langsung dan `lifetopia-play.pages.dev` sudah 200 semua. Sekitar 1 menit kemudian semua file 200, `Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.io` lulus, dan isi file identik dengan build. Penyebab: jeda propagasi edge custom domain. Tindakan: tunggu ±1 menit lalu jalankan ulang verifikasi; jangan langsung rollback. Terjadi lagi pada deploy M3.5 (cek pertama custom domain masih M3.4; ±45 s kemudian M3.5 dan verifikasi lulus), dan alias `preview.` juga sempat tertinggal pada deploy preview M3.5.
 
 
 | Gejala | Penyebab / solusi |
@@ -248,7 +249,7 @@ Setelah rollback: `.\Tools\Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.
 - Tidak ada token di repo: Wrangler memakai login OAuth di profil pengguna. Jangan menaruh `CLOUDFLARE_API_TOKEN` di file. Bila suatu saat perlu token, simpan hanya di environment variable sesi.
 - `Verify-WebBuild.ps1 -ScanRepo` memeriksa pola secret di semua file repo yang tidak di-ignore.
 - Yang diunggah hanya folder staging dari daftar izin. Source Unity, master art, backup, log, `.meta`, dan dokumen tidak pernah ikut.
-- Build `Local` berisi artwork original. Publikasi lewat Cloudflare Pages **disetujui founder 26-11-2026**. Production saat ini (`5784f2eb`, build `M3-04-20261126-2103`) berisi artwork ini. Repository GitHub tetap tanpa PNG, master art, dan backup.
+- Build `Local` berisi artwork original. Publikasi lewat Cloudflare Pages **disetujui founder 26-11-2026**. Production saat ini (`94abb7f9`, build `M3-05-20261126-2211`) berisi artwork ini (termasuk sprite NPC Rio). Repository GitHub tetap tanpa PNG, master art, dan backup.
 
 ## 12. Catatan untuk Claude (sesi berikutnya)
 

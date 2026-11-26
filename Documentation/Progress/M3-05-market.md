@@ -173,5 +173,18 @@ Rio di depan kios; Interact langsung membuka market; sapaan "Welcome, traveler!"
 ### 12.5 Kompatibilitas repository publik
 GUID scan file publik: 0 referensi tak ter-resolve (tidak ada GUID art lokal). Scene publik `FirstPlayable` diuji di Editor Play Mode (placeholder Rio + market, sentuh). Kode terkompilasi tanpa error di Editor. **Public Web Build terbaru belum dibuat/diuji untuk M3.5** — Public build terakhir yang diuji adalah `M3-04-20261126-1844` (M3.4).
 
-### 12.6 Commit, push & production
-(diisi setelah commit dan deploy)
+### 12.6 Commit, push & production (disetujui founder)
+| Item | Nilai |
+|---|---|
+| Commit M3.5 | **`4bc582f`** `feat(m3.5): market & economy with NPC Rio, Rio's Market UI and atomic trades` — 39 file di-stage eksplisit, push `08dea50..4bc582f` ke `origin/main`. Commit docs penutupan menyusul (lihat `git log`) |
+| Pemeriksaan sebelum commit | GUID: 431 file publik, 0 tak ter-resolve; tidak ada PNG/master art/screenshot/backup/build/scene privat/`Web.asset` di-stage; scan secret/kredensial/path pribadi bersih |
+| Build ID | **`M3-05-20261126-2211`** (sama dengan preview `ad464534` yang diuji founder; tidak di-build ulang). `version.json` menulis `commit 08dea50, dirty true` karena build dibuat sebelum commit; isi kode = commit `4bc582f` |
+| Identitas file | MD5 wasm.br, data.br, framework.js.br, loader.js, index.html, version.json: folder build = preview `ad464534` = production — **identik** |
+| Command | `.\Tools\Deploy-Web.ps1 -Production -SkipBuild -BuildPath "Builds/Web/M3-05-20261126-2211" -ArtworkApproved -ConfirmProduction lifetopia-play` |
+| Deployment production | **`94abb7f9-939d-4ab9-bb07-754c854c19d7`** (https://94abb7f9.lifetopia-play.pages.dev); `wrangler pages deployment list` production terbaru = `94abb7f9` (source `4bc582f`) |
+| Rollback target | **`5784f2eb`** (M3.4, build `M3-04-20261126-2103`) — prosedur di `WEB-DEPLOYMENT.md` §8 |
+| Verifikasi | Cek pertama skrip: custom domain masih M3.4 (propagasi), URL deployment & pages.dev sudah M3.5. ±45 s kemudian: `version.json` = `M3-05-20261126-2211` v0.3.5 M3.5; `Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.io` **lulus**; header wasm `application/wasm` + `br`, `no-cache, no-transform`, `nosniff`, `noindex`; path tidak ada → 404 |
+| Gameplay production (desktop 1280×720, browser otomatis) | 60,0 FPS, 0 error (6 warning engine yang dikenal); jalan ke Rio, prompt "[E] Shop at Rio's Market", E membuka market (portrait, ikon asli); **klik mouse** Purchase → 100 → 90, bibit 3 → 4, hotbar 4; jam tetap 08:35 selama 2 s market terbuka; Esc → jam jalan lagi (08:38), prompt kembali. Percobaan pertama skrip berhenti di luar jangkauan Rio (prompt tidak muncul) — posisi skrip, bukan bug; diulang setelah bergeser sedikit. Screenshot lokal `prod_*` |
+| Tidak diuji Claude di production | HP nyata, Safari iOS, gamepad, performa perangkat; Public Web Build M3.5 belum dibuat |
+
+**M3.5 ditutup 26-11-2026.** M3.6 Housing **belum dimulai** — founder akan mendesain rumah dan menyiapkan paket aset interior terlebih dahulu.
