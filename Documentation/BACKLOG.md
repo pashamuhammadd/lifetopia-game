@@ -10,6 +10,13 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 | G-2 | Art distribution rights review (A0 + A0-02) | PNGs stay local until approved; see commit procedure in the M2 final report |
 | G-3 | Repo license decision | Public repo ≠ open source; owner decision |
 
+## Pending verification (open tasks from approved milestones)
+| ID | From | Item | When |
+|---|---|---|---|
+| V-1 | M3.1 | Web check of the ASCII "1-5" hint fix (Web build showed "Hotbar: 15"; fixed in Editor only) | Next milestone Web build |
+| V-2 | M3.1 | Real-phone test of inventory/hotbar touch (tap, drag & drop, backdrop over joystick, touch target sizes) — part of G-1 | Before public release |
+| V-3 | M3.1 | Gamepad test: North button toggles bag; movement blocked while open (binding exists, untested — no device) | When a gamepad is available |
+
 ## Art quality backlog (Art Bible final targets)
 | ID | Pri | Item |
 |---|---|---|
@@ -36,3 +43,24 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 | T-8 | P2 | Unity Personal splash shown at start (licence-dependent) |
 | T-9 | P2 | Fonts: legacy Text; move to TextMeshPro with a licensed font |
 | T-10 | P2 | Git LFS quota check before committing bulk art |
+| T-11 | P1 | UI font: LegacyRuntime (Arial) → licensed Fredoka + Nunito Sans via TextMeshPro (with T-9) |
+| T-12 | P2 | Runtime-generated rounded UI sprites look square in Edit Mode; replace with final 9-slice UI art |
+| T-13 | P2 | Dev item keys use F-keys (browser conflicts); add on-screen dev panel if Web dev testing is needed |
+| T-14 | P2 | Inventory: no split-stack / quantity picker, no discard |
+| T-15 | P2 | Hotbar selection has no "use" action yet (farming/fishing milestones) |
+| T-16 | P1 | `PlayerProfileHost` always starts a new profile; local save must load `PlayerProfileData` and grant the starter kit only when no save exists |
+| T-17 | P2 | Gamepad / Tab navigation in inventory UI |
+| T-18 | P2 | Move ad-hoc Editor regression scripts to a PlayMode test assembly (with T-6/T-7) |
+| T-20 | P2 | Touch Interact button looks "active" while the bag is open (M1 modal behaviour meant for dialogue); hide/dim for non-dialogue modals |
+| T-21 | P1 | Built-in Web font lacks some glyphs (en dash showed as "Hotbar: 15"); use ASCII until T-11; rebuild Web to confirm the "1-5" fix |
+| T-22 | P1 | Dev laptop has 8 GB RAM; with the Editor open only 0.2–0.6 GB was free and the M3.1 Web build took 22.7 min (wasm link/`wasm-opt`) and the first browser load stalled at 90 %. Build once per milestone, with the Editor closed or in batchmode; close other apps before Web tests |
+| T-23 | P2 | Web build optimisation to evaluate (each needs founder approval and a before/after measurement): IL2CPP code generation "Optimize Size", managed stripping level, texture compression/atlas (T-1), unused modules; current total 9.31 MiB |
+| T-24 | P2 | Consider a CI/remote machine for Web builds so local RAM limits do not block milestone checks |
+| T-19 | P2 | `Data/` is now partly public (`Data/Items`); `Data/Characters` stays local — keep `.git/info/exclude` in sync |
+
+## Item icons to produce (M3.1, Art Bible §05: 128×128, 12 px padding)
+| ID | Pri | Icon |
+|---|---|---|
+| I-1 | P1 | Hoe, Watering Can, Fishing Rod, Tropical Seeds, Tropical Fruit, Reef Fish |
+| I-2 | P2 | Driftwood, Wooden Stool |
+| I-3 | P1 | UI: coin, backpack (Bag button), close; P2: 9-slice cream/wood panel, slot and button frames |

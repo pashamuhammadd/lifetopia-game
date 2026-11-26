@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c749b34b4a5be5241bd1d07f204f8e81, type: 3}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Items.ItemDatabase
+  items:
+  - {fileID: 11400000, guid: c0f5b7636a90e5746b588d1a05c2dc16, type: 2}
+  - {fileID: 11400000, guid: cef3005a9e66b2548bd64fe42a8115e7, type: 2}
+  - {fileID: 11400000, guid: ba1790e722e77d84298d015f9c840813, type: 2}
+  - {fileID: 11400000, guid: 798247ddf8a98c04985fd803ea686c15, type: 2}
+  - {fileID: 11400000, guid: 396076ad2ed64f34fa4962594176a558, type: 2}
+  - {fileID: 11400000, guid: ccf40fdcafe0c77448ab1d4d0c7bf9cb, type: 2}
+  - {fileID: 11400000, guid: 5b1e486c4a980af49b0af6c737d84c58, type: 2}
+  - {fileID: 11400000, guid: 7a7a93de6bb36ea4380717518afdb2ca, type: 2}

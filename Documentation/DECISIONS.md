@@ -36,3 +36,18 @@ M2 is closed as a **calibration milestone** with the exceptions below. The Art B
 | Portrait | "Please rotate your device" overlay in the Web template on touch devices in portrait | Same; revisit if portrait gameplay is ever designed |
 | Real phone | Not tested; **mandatory before any public release** | Android Chrome + iOS Safari minimum |
 | Art distribution | A0/A0-02 PNGs are **local only**; never committed to a pushed branch or pushed without explicit founder approval | Owner rights review per asset |
+
+## M3.1 implementation decisions — 26 November 2026 (founder approved)
+| Topic | Working choice |
+| --- | --- |
+| Data vs state | Item definitions are immutable ScriptableObjects; inventory/hotbar/wallet are plain C# runtime state; saves use `PlayerProfileData` (IDs + numbers, versioned) |
+| Item IDs | lower_snake_case, stable forever once released (e.g. `seed_tropical`) |
+| Inventory rules | 12 slots, max 99 per stack, non-stackables one per slot; every operation all-or-nothing; full bag → message, nothing removed |
+| Hotbar | 5 references to items in the inventory (no own quantities); one slot per item; cleared automatically at 0 |
+| Tools | Category Tool is never consumed on use |
+| Starter | 100 coins, 3 Tropical Seeds, Hoe, Watering Can, Fishing Rod; granted once (flag stored in save data) |
+| Placeholder prices | Seeds buy 10 / crop 18 / fish 12 from GDD; other prices are test values, economy still draft |
+| UI art | No new PNGs: rounded corners/shadows generated in code, category-coloured placeholder icons; final icons via the Icon field |
+| Scenes | `FirstPlayable` (public greybox) carries the inventory test path; `GameplayPrototype` (copy of ArtCalibration) is local-only |
+| UI text | ASCII only in UI strings until a licensed font is bundled (built-in Web font lacks e.g. en dash) |
+| Web builds | Build once per milestone when features are stable; close the Unity Editor (or build in batchmode) on the 8 GB dev laptop |

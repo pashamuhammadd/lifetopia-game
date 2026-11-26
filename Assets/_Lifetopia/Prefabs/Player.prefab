@@ -627,6 +627,9 @@ MonoBehaviour:
   moveAction: {fileID: -8552566134553555873, guid: ba7f0ce3ee737014d89a7ec8c574c8a5, type: 3}
   interactAction: {fileID: 1343363423641259612, guid: ba7f0ce3ee737014d89a7ec8c574c8a5, type: 3}
   cancelAction: {fileID: 2951447814887413667, guid: ba7f0ce3ee737014d89a7ec8c574c8a5, type: 3}
+  inventoryAction: {fileID: -5464065493397420832, guid: ba7f0ce3ee737014d89a7ec8c574c8a5, type: 3}
+  hotbarSlotAction: {fileID: -7028604705643275281, guid: ba7f0ce3ee737014d89a7ec8c574c8a5, type: 3}
+  hotbarSlotCount: 5
   joystick: {fileID: 0}
   interactButton: {fileID: 0}
   gate: {fileID: 0}

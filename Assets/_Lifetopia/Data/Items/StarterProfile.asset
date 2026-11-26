@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bd21666a0f87a469e1c14ce0e2518e, type: 3}
+  m_Name: StarterProfile
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.InventorySystem.StarterProfile
+  startingCoins: 100
+  items:
+  - item: {fileID: 11400000, guid: c0f5b7636a90e5746b588d1a05c2dc16, type: 2}
+    quantity: 1
+    hotbarSlot: 0
+  - item: {fileID: 11400000, guid: cef3005a9e66b2548bd64fe42a8115e7, type: 2}
+    quantity: 1
+    hotbarSlot: 1
+  - item: {fileID: 11400000, guid: ba1790e722e77d84298d015f9c840813, type: 2}
+    quantity: 1
+    hotbarSlot: 2
+  - item: {fileID: 11400000, guid: 798247ddf8a98c04985fd803ea686c15, type: 2}
+    quantity: 3
+    hotbarSlot: 3

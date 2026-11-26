@@ -17,6 +17,10 @@ namespace Lifetopia.Core
 
         public bool IsBlocked => _blockers.Count > 0;
 
+        /// <summary>True when something other than <paramref name="source"/> is blocking gameplay.</summary>
+        public bool IsBlockedExcept(UnityEngine.Object source) =>
+            _blockers.Count > (source != null && _blockers.Contains(source) ? 1 : 0);
+
         public void Block(UnityEngine.Object source)
         {
             if (source == null) return;

@@ -14,6 +14,9 @@ namespace Lifetopia.Controls
     /// - InteractPerformed: E / gamepad South / touch button, only while gameplay is not blocked.
     /// - UiSubmitPerformed: the same buttons while a modal (dialogue) blocks gameplay.
     /// - CancelPerformed: Escape / gamepad Start.
+    /// - InventoryTogglePerformed: B / I / gamepad North (raised even while a modal blocks gameplay;
+    ///   the inventory UI decides what to do).
+    /// - HotbarSlotPerformed(index 0-4): keys 1-5 / numpad 1-5.
     /// All held input is released when the app loses focus or the browser tab is hidden.
     /// </summary>
     [DisallowMultipleComponent]
@@ -23,6 +26,10 @@ namespace Lifetopia.Controls
         [SerializeField] private InputActionReference moveAction;
         [SerializeField] private InputActionReference interactAction;
         [SerializeField] private InputActionReference cancelAction;
+        [SerializeField] private InputActionReference inventoryAction;
+        [Tooltip("Button action whose bindings are keys 1..N in slot order (extra bindings wrap, e.g. numpad).")]
+        [SerializeField] private InputActionReference hotbarSlotAction;
+        [SerializeField, Min(1)] private int hotbarSlotCount = 5;
 
         [Header("Touch controls (optional)")]
         [SerializeField] private VirtualJoystick joystick;
@@ -37,6 +44,8 @@ namespace Lifetopia.Controls
         public event Action InteractPerformed;
         public event Action UiSubmitPerformed;
         public event Action CancelPerformed;
+        public event Action InventoryTogglePerformed;
+        public event Action<int> HotbarSlotPerformed;
 
         /// <summary>Clamped movement intent in the range |v| ≤ 1.</summary>
         public Vector2 Move { get; private set; }
@@ -51,6 +60,9 @@ namespace Lifetopia.Controls
             Enable(moveAction);
             Enable(interactAction);
             Enable(cancelAction);
+            Enable(inventoryAction);
+            Enable(hotbarSlotAction);
+            if (hotbarSlotAction != null && hotbarSlotAction.action != null) hotbarSlotAction.action.performed += OnHotbarSlot;
             if (interactButton != null) interactButton.Pressed += OnTouchInteract;
             WebFocusBridge.FocusLost += ReleaseAllInput;
         }
@@ -60,6 +72,9 @@ namespace Lifetopia.Controls
             Disable(moveAction);
             Disable(interactAction);
             Disable(cancelAction);
+            Disable(inventoryAction);
+            if (hotbarSlotAction != null && hotbarSlotAction.action != null) hotbarSlotAction.action.performed -= OnHotbarSlot;
+            Disable(hotbarSlotAction);
             if (interactButton != null) interactButton.Pressed -= OnTouchInteract;
             WebFocusBridge.FocusLost -= ReleaseAllInput;
             Move = Vector2.zero;
@@ -75,6 +90,7 @@ namespace Lifetopia.Controls
 
             if (interactAction != null && interactAction.action.WasPressedThisFrame()) RaiseInteract();
             if (cancelAction != null && cancelAction.action.WasPressedThisFrame()) CancelPerformed?.Invoke();
+            if (inventoryAction != null && inventoryAction.action.WasPressedThisFrame()) InventoryTogglePerformed?.Invoke();
         }
 
         private void OnApplicationFocus(bool hasFocus)
@@ -100,6 +116,13 @@ namespace Lifetopia.Controls
         }
 
         private void OnTouchInteract() => RaiseInteract();
+
+        private void OnHotbarSlot(InputAction.CallbackContext context)
+        {
+            int binding = context.action.GetBindingIndexForControl(context.control);
+            if (binding < 0) return;
+            HotbarSlotPerformed?.Invoke(binding % hotbarSlotCount);
+        }
 
         private void RaiseInteract()
         {

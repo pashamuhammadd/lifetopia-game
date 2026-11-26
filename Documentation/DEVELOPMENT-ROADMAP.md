@@ -18,6 +18,7 @@
 | M0 | Done, committed 09e19ca | `Progress/M0-foundation.md` |
 | M1 | Done, committed 5104ce0 | `Progress/M1-first-playable.md` |
 | M2 | **Closed as calibration milestone** (founder approved 2026-11-26) with accepted exceptions: 4-key walk, procedural idle, minor rendition change. Open gates before public release: real-phone test, art distribution rights. Art kept local. | `Progress/M2-A0-static.md`, `Progress/M2-art-calibration-final.md` |
-| M3 | Not started; requires explicit founder go-ahead | Backlog: `BACKLOG.md` |
+| M3.1 Item, Inventory & Hotbar | **Approved by founder 2026-11-26.** Pending: Web re-check of the "1-5" font fix (next milestone Web build), real-phone test (G-1), gamepad test. | `Progress/M3-01-inventory-hotbar.md` |
+| M3.2+ | Not started; requires explicit founder go-ahead (proposal: basic farming + hotbar use, or local save) | `Progress/M3-01-inventory-hotbar.md` §12 |
 
 M0 is the only task authorized by the foundation prompt. No commitment to fixed delivery dates. M2 and M3 can iterate, but do not mass-produce sprites until calibration passes. Keep a dated milestone report in `Documentation/Progress/` with actual tests and screenshots approved for public release. Check previous grant agreement before changing milestones or live game.
