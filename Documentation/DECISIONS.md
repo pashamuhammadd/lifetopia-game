@@ -119,7 +119,7 @@ M2 is closed as a **calibration milestone** with the exceptions below. The Art B
 | Branches | Default deploy target `preview`; production `main` only with `-Production -SkipBuild` + typed confirmation, after founder approval |
 | Artwork | Founder approved publishing original Lifetopia World artwork inside Web builds on Cloudflare Pages (preview + production). Original PNGs, masters and backups never go to GitHub. Scripts still require `-ArtworkApproved` for non-placeholder builds as a deliberate per-deploy acknowledgement |
 | Build variants | `Local` (original art) for founder playtests and production; `Public` (placeholder) only to verify the public repository build — never replaces production (`-AllowPlaceholderProduction` guard) |
-| Current production | Keep `2cbfb971` (M3-02, manual founder deploy) until a specific replacement is approved |
+| Current production | Keep the current production until a specific replacement is approved. **As of 2026-11-27: `8c7e39de` (M3.6, build `M3-06-20261127-1037`), rollback `94abb7f9` (M3.5)** |
 | Headers | `_headers` generated per deploy from the real compression; `no-cache, no-transform` everywhere until file names are hashed |
 | Version info | `version.json` written by `Build-Web.ps1`, shown by the Web template; `productName` (project identity) unchanged |
 | Rollback | Cloudflare dashboard "Rollback to this deployment" or redeploy an older verified build folder; never automatic |

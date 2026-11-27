@@ -121,7 +121,7 @@ Baru: `Scripts/Housing/*` (16 file), `Tests/EditMode/HousingTests.cs`, `Scenes/H
 Catatan commit nanti: `Web.asset` versi publik juga perlu `HomeInterior.unity` di daftar scene (tanpa GameplayPrototype) — stage lewat patch terpisah.
 
 ## 11. Langkah berikutnya
-Founder acceptance test di Preview (desktop + HP nyata). Setelah disetujui: commit + push (stage eksplisit), lalu production deploy build yang sama (`-Production -SkipBuild`) dengan persetujuan terpisah. M3.7 belum dimulai. Handover: `Documentation/HANDOVER-2026-12-02.md`.
+Founder acceptance test di Preview (desktop + HP nyata). Setelah disetujui: commit + push (stage eksplisit), lalu production deploy build yang sama (`-Production -SkipBuild`) dengan persetujuan terpisah. M3.7 belum dimulai. Handover: `Documentation/HANDOVER.md`.
 
 ## 12. Putaran founder 27-11-2026 (keputusan & hasil)
 ### 12.1 Keputusan founder
@@ -189,5 +189,21 @@ EditMode **230/230** (Unity Test Runner via MCP, 27-11-2026, setelah kalibrasi b
 - **Gameplay:** Living/Decorating Mode, aturan penempatan (layer, sel tercadang, flood fill ke pintu), rotasi hanya bed, Store hanya bila tas muat, Decorating pause jam, furnitur awal sekali per sesi.
 - **Harga furnitur:** Stool 25 · Table 50 · Tropical Rug 60 · Indoor Plant 75 · Bookshelf 100 · Tropical Bed 150 · Wooden Wardrobe 150; tidak dijual kembali. Baseline M3.5 (10/18/12, modal 100 + 3 bibit + alat) tetap.
 
-### 13.4 Commit, push & production
-Lihat §13.5 (diisi setelah commit dan deploy).
+### 13.4 Commit, push & production (disetujui founder)
+| Item | Nilai |
+|---|---|
+| Backup lokal | Folder saudara repo `lifetopia-m3-6-local-backup-20261127`: 829 file lokal yang di-exclude (Art, LocalArt, scene lokal, screenshot, reference) + `Web.asset` lokal; isi HousingPack01 identik (hash). File asli tidak dipindah/dihapus; tidak diunggah |
+| Pemeriksaan sebelum commit | stage eksplisit 92 file; tidak ada PNG/Art/LocalArt/GameplayPrototype/screenshot/build; scan GUID 466 file publik → 0 referensi lokal; `Verify-WebBuild -ScanRepo` 505 file bersih; tidak ada path pribadi/email/credential di diff |
+| `Web.asset` | versi publik di-stage via `git update-index` = HEAD + `HomeInterior.unity` (tanpa GameplayPrototype dan tanpa perubahan `preloadedAssets`); file kerja lokal tetap |
+| Commit fitur | **`61b7e6c`** `feat(m3.6): housing system - starter house interior, decorating mode, furniture market` — push `be2d218..61b7e6c` ke `origin/main`. Commit dokumentasi penutupan menyusul (lihat `git log`) |
+| Build ID | **`M3-06-20261127-1037`** (sama dengan preview `aaa1b7ea` yang diuji founder; tidak di-build ulang). `version.json` mencatat `commit be2d218, dirty true` karena build dibuat sebelum commit; isi kode = commit `61b7e6c` |
+| Ukuran build | 10,48 MiB (wasm.br 7.349.841 B, data.br 3.530.364 B, framework.js.br 75.577 B, loader.js 26.983 B) |
+| Identitas file | MD5 index.html, version.json, loader.js, framework.js.br, wasm.br, data.br: folder build = preview `aaa1b7ea` = production — **identik** (byte mentah dengan `Accept-Encoding: br`) |
+| Command | `.\Tools\Deploy-Web.ps1 -Production -SkipBuild -BuildPath "Builds/Web/M3-06-20261127-1037" -ArtworkApproved -ConfirmProduction lifetopia-play` (0 file baru diunggah; 8 sudah ada) |
+| Deployment production | **`8c7e39de-a718-4e0f-b2a7-b7302dda2c93`** (https://8c7e39de.lifetopia-play.pages.dev) |
+| Rollback target | **`94abb7f9`** (M3.5, build `M3-05-20261126-2211`) — prosedur `WEB-DEPLOYMENT.md` §8 |
+| Verifikasi | `version.json` di https://play.lifetopiaworld.io = `M3-06-20261127-1037` v0.3.6; `Verify-WebBuild -Url https://play.lifetopiaworld.io` **lulus**; wasm `application/wasm` + `br`, `no-cache, no-transform`, `nosniff`, `noindex`; path tidak ada → 404 |
+| Gameplay production (desktop 1280×720, keyboard + mouse asli) | loading OK, console 0 error (6 warning engine); cangkul/tanam/siram → "Growing"; masuk rumah (E); Decorate → pilih meja → Move → Place ("Moved Wooden Table."); Esc; keluar jalan kaki; Rio's Market terbuka (kategori Farming/Furniture, harga 10/25); fishing di dermaga 5 percobaan (ada "Missed", tas akhirnya Reef Fish ×3, joran tetap, coin tetap) |
+| Tidak diuji Claude di production | HP nyata (founder sudah di preview), Safari iOS, gamepad, performa perangkat |
+
+**M3.6 ditutup 27-11-2026.** Handover: `Documentation/HANDOVER.md`. M3.7 belum dimulai.

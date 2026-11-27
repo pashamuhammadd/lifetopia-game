@@ -11,7 +11,7 @@
 | M6 Online beta | Real-time plaza, chat, visit, reconnect | Server-authoritative movement/rewards, rate limits, reporting, moderation, load tests |
 | M7 Optional Web3 | Wallet link, devnet ownership experiment | Security review, signed challenge, replay protection, no client secrets; no mainnet without approval |
 
-## Status (2026-11-26)
+## Status (2026-11-27)
 
 | Gate | Status | Evidence |
 | --- | --- | --- |
@@ -24,7 +24,7 @@
 | M3.3 Farming + Gameplay Asset Pack 01 A/B | **Completed and approved by founder 2026-11-26.** Production `play.lifetopiaworld.io` = deployment `6cd1a5bf` (Build `M3-03-20261126-1741`); rollback target `002b0658`. Founder-reported playtest (preview + real phone) 12/12. Follow-ups: T-41 plot save, T-42 action animations, T-45 SFX, V-3 gamepad, G-1 device metrics. | `Progress/M3-03-farming.md` |
 | M3.4 Fishing + Environment (Asset Pack 01 C/D/E) | **Closed 2026-11-26.** Dual-grid terrain/shore, market stall + info sign art, decorations, south beach + 2x3 dock (world to y -15), fishing mini game with existing rod/fish, game time keeps running while fishing. EditMode 176/176; founder-reported manual playtest on Preview incl. real phone 15/15. Code `7a7ee0b`; production `5784f2eb` (build `M3-04-20261126-2103`); rollback `6cd1a5bf`. Deployment details: `WEB-DEPLOYMENT.md` | `Progress/M3-04-fishing.md` |
 | M3.5 Market & Economy (NPC Asset Pack 01) | **Closed 2026-11-26.** Rio NPC at the stall, Rio's Market Buy/Sell UI, atomic economy on existing wallet/inventory (baseline seed 10 / fruit 18 / fish 12). EditMode 204/204; founder-reported manual playtest on Preview incl. real phone 16/16. Code `4bc582f`; production `94abb7f9` (build `M3-05-20261126-2211`); rollback `5784f2eb`. Deployment details: `WEB-DEPLOYMENT.md` | `Progress/M3-05-market.md` |
-| M3.6 Housing System (Housing Asset Pack 01) | **Implemented 2026-11-27; on Preview `aaa1b7ea` (build `M3-06-20261127-1037`), awaiting founder acceptance.** Starter house interior (separate additive scene, 8 x 8), Living/Decorating Mode, grid placement with exit reachability, move/rotate(bed)/store, furniture in Rio's Market (candidate prices), adaptive camera + responsive HUD, session state across scenes. EditMode 230/230; Public and Local Web builds; Local on Cloudflare Preview. Not committed | `Progress/M3-06-housing.md` |
-| M3.7+ | Not started (Quest & Local Save next; requires founder go-ahead) | |
+| M3.6 Housing System (Housing Asset Pack 01) | **Closed 2026-11-27** (founder acceptance 18/18). Code `61b7e6c`; production `8c7e39de` (build `M3-06-20261127-1037`); rollback `94abb7f9`. Starter house interior (separate additive scene, 8 x 8), Living/Decorating Mode, grid placement with exit reachability, move/rotate(bed)/store, furniture in Rio's Market (prices = baseline), adaptive camera + responsive HUD, session state across scenes. EditMode 230/230; Public build `M3-06-public-20261127-final` verified | `Progress/M3-06-housing.md` |
+| M3.7+ | Not started (Quest & Local Save next; requires founder go-ahead). Development paused until 2026-12-02 | `HANDOVER.md` |
 
 M0 is the only task authorized by the foundation prompt. No commitment to fixed delivery dates. M2 and M3 can iterate, but do not mass-produce sprites until calibration passes. Keep a dated milestone report in `Documentation/Progress/` with actual tests and screenshots approved for public release. Check previous grant agreement before changing milestones or live game.

@@ -13,6 +13,7 @@
 - 26 new EditMode tests (230 total).
 - Founder round 2026-11-27: `bed_north` uniform visual scale 1.3 (pivot/footprint/collider unchanged); interior HUD minimum scale on small phones (`CanvasMinScale`), larger text, Decorate/Exit side by side. Local build `M3-06-20261127-1037` deployed to Preview `aaa1b7ea`; production unchanged (`94abb7f9`). Public build re-run on the final code.
 - Founder acceptance (2026-11-27): founder-reported manual playtest on Cloudflare Preview incl. a phone, **18/18 passed**; M3.6 approved. Tropical Cozy Cottage design, responsive housing and furniture prices fixed as baseline.
+- Released: code commit `61b7e6c`; production deployment `8c7e39de` of build `M3-06-20261127-1037` (identical to the accepted preview `aaa1b7ea`); rollback target `94abb7f9` (M3.5). Public Web Build `M3-06-public-20261127-final` verified. Handover for 2026-12-02 in `Documentation/HANDOVER.md`.
 ### M3.5 Market & Economy — closed 2026-11-26 (founder acceptance 16/16)
 - NPC Asset Pack 01: 17 runtime PNG imported locally (PPU 64, feet pivot 0.5/0.125, bilinear, no mipmaps); Reference/ReferenceReuse not imported (existing item/coin icons reused).
 - Rio (`Lifetopia.Npc`: `NpcView`, `NpcVisualSet`, `MerchantNpc`): static merchant in front of the market stall, foot collider, Y-sorted like the player, turns to face the player; placeholder "Rio (TEMP)" in the public scene. Maya and Kai not placed.

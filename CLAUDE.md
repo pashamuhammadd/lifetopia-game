@@ -3,6 +3,7 @@
 ## Product and sources of truth
 - Game client: `pashamuhammadd/lifetopia-game` (public, main); separate existing web monorepo `pashamuhammadd/lifetopia-platform`.
 - Unity 6000.3.29f1 LTS, 2D Built-In Render Pipeline, C#, Unity Input System. Unity Pipeline 1.0.1 already configured; use existing Unity CLI/MCP and installed plugin. No migration or package upgrades without approval.
+- **Start every new session by reading `Documentation/HANDOVER.md`** (current status, production/rollback IDs, procedures, next-milestone recommendation), then the files below.
 - Read `Documentation/DECISIONS.md`, `GDD-2.0.md`, `ART-BIBLE-1.0.md`, `TECHNICAL-ARCHITECTURE.md`, `DEVELOPMENT-ROADMAP.md`, `ASSET-MASTER-LIST.md`, `PLATFORM-INTEGRATION.md` within Documentation, then relevant code. Decisions file reconciles later discussion with original drafts.
 - Chibi Tropical Cozy; Island Explorer modern chibi for all ages, young-adult visual impression, orthographic XY 2D, fixed oblique art perspective. Free starter home; tropical village; single-player first, multiplayer later; web PC and mobile; Web3 after gameplay. Game UI English; explanations to founder Indonesian.
 

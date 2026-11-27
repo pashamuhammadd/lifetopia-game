@@ -256,6 +256,7 @@ Setelah rollback: `.\Tools\Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.
 
 | Tanggal | Build | Deployment | Catatan |
 |---|---|---|---|
+| 2026-11-27 | `M3-06-20261127-1037` (Local, v0.3.6) | **Production `8c7e39de`** (play.lifetopiaworld.io) | Disetujui founder setelah acceptance 18/18; file identik dengan preview `aaa1b7ea`; rollback target `94abb7f9` (M3.5) |
 | 2026-11-27 | `M3-06-20261127-1037` (Local, v0.3.6) | Preview `aaa1b7ea` (https://aaa1b7ea.lifetopia-play.pages.dev, alias preview) | Disetujui founder; production tetap `94abb7f9` (M3.5). Local build dijalankan sebagai proses Windows terpisah (`Start-Process`) karena percobaan sebelumnya dihentikan oleh pembersih proses background Claude Code saat RAM rendah; pemeriksaan RAM skrip tetap aktif |
 
 ## 12. Catatan untuk Claude (sesi berikutnya)
