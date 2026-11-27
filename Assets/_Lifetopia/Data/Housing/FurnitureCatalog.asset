@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a44b6505c3e0747a123d801844afea, type: 3}
+  m_Name: FurnitureCatalog
+  m_EditorClassIdentifier: Lifetopia.Runtime::Lifetopia.Housing.FurnitureCatalog
+  furniture:
+  - {fileID: 11400000, guid: 4a223d568cce65a469cf7ded949e1735, type: 2}
+  - {fileID: 11400000, guid: d61614659c4a2fc4d9f995371080259b, type: 2}
+  - {fileID: 11400000, guid: aedbefcc46b76774a93c8b7ecb84c2e8, type: 2}
+  - {fileID: 11400000, guid: c3be61fb1b4de064f814366b3b5afcfe, type: 2}
+  - {fileID: 11400000, guid: 571d856febff9c44d80e52d6ba238cd9, type: 2}
+  - {fileID: 11400000, guid: 92919fc7716dc244399e3a9260a372dd, type: 2}
+  - {fileID: 11400000, guid: 6dada0781a588e949ae00f3f861feddd, type: 2}

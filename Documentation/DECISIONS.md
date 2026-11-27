@@ -52,6 +52,28 @@ M2 is closed as a **calibration milestone** with the exceptions below. The Art B
 | UI text | ASCII only in UI strings until a licensed font is bundled (built-in Web font lacks e.g. en dash) |
 | Web builds | Build once per milestone when features are stable; close the Unity Editor (or build in batchmode) on the 8 GB dev laptop |
 
+## M3.6 housing & decorating decisions — 27 November 2026 (founder approved; accepted 18/18, milestone closed)
+| Topic | Working choice |
+| --- | --- |
+| Scope change | GDD 2.0 limited decoration in alpha; founder approved (M3.6 prompt) a basic decorating system now: Living/Decorating Mode, grid placement, move, rotate (validated sprite variants only), store, furniture in Rio's Market. Still out of scope: extra properties, house themes B/C (Coastal/Forest = expansion references only), multiplayer, database, Web3, cross-reload persistence |
+| Scene model | Separate scene `HomeInterior.unity` (tracked, art-free) loaded **additively** at a far offset (200, 0); the village scene stays loaded, so profile/wallet/hotbar/clock/farm/HUD/player/camera exist exactly once and crops keep growing on `ActivePlaySeconds`. Leaving unloads the interior. Session layout lives in `HousingSessionHost` (village scene) |
+| Art binding | One interior scene for both variants: the village scene passes a `HousingVisualSet` (local asset, local scene only) to the interior; public build passes none → labelled greybox. No local GUID in tracked files |
+| Room | 8 x 8 logical cells, 1 unit/cell, PPU 64; origin SW, x east, y north; back wall 1.5 u, side posts and low front cutaway with a 2-cell door opening (cells x 3-4). Exit cells (3,0),(4,0) and spawn cells (3,1),(4,1) are reserved for every layer |
+| Entry/exit | Enter: Interact at the existing house door ("Enter Home"), house position unchanged. Exit: walk out through the opening (trigger) or the HUD Exit button. Fade 0.2 s, input locked, one transition at a time + 0.6 s cooldown; game time keeps running during the fade |
+| Starter furniture | Placed once per session, never added to the bag: Tropical Bed north (0,5), Wooden Table north (4,4), Wooden Stool north (5,2) (manifest proposal) |
+| Item IDs | Existing `furniture_wooden_stool` reused. New: `furniture_bed`, `furniture_table`, `furniture_rug_oval`, `furniture_monstera`, `furniture_bookshelf`, `furniture_wardrobe` (non-stackable, 1 slot each). Reserve art (chair, chest, rug_rect, lantern, vase, hibiscus, palm, small plant, basket, shell, door/window variants) imported but has no item/price |
+| Placement rules | Footprint from data, never PNG size; anchor front-centre (rugs: centre); two layers (Object, Floor=rug): no overlap within a layer, rug may lie under furniture; solid pieces not on the player's cells; after any solid placement every free cell must 4-connect to the exit (flood fill) so nobody can be trapped or cut off. Collider = footprint inset 0.06 |
+| Atomicity | `HouseDecorService`: place consumes exactly 1 item; move/rotate keeps the instance and the old spot until a valid confirm; store only if the bag accepts (full bag → piece stays); re-entrant calls refused; one confirm per frame + 0.25 s cooldown. Cancel never changes anything |
+| Rotation | Only the bed (north ↔ west, 1x2 ↔ 2x1) using the delivered west sprite; other west views stay reserve; Rotate button hidden when unsupported. No flipping/rotating of perspective art |
+| Modes | Living Mode: walk, colliders, Decorate/Exit buttons. Decorating Mode = menu: blocks movement and pauses game time (like bag/market), hides hotbar/Bag/joystick/Interact/keyboard hint, bag and market cannot open on top, Exit refused |
+| Camera | Adaptive orthographic: fit the room into the usable screen rect (safe area minus HUD panels, per mode) with `size = max(h/(2·usableH), w/(2·aspect·usableW))`; capped by a readability floor of 30 CSS px per cell (`Screen.dpi`-based); if the cap is hit the camera follows the player/ghost, clamped so every edge stays reachable. World, grid, sprites and colliders are never scaled |
+| Prices (candidate, configurable on item assets) | Stool 25, Table 50, Tropical Rug 60, Indoor Plant 75, Bookshelf 100, Tropical Bed 150, Wooden Wardrobe 150 — not a baseline until founder acceptance. Furniture Sell Price 0 (no resale). M3.5 baseline unchanged (seed 10 / fruit 18 / fish 12, start 100 coins + 3 seeds + tools) |
+| Market | Buy list = seed then furniture; category headers ("Farming", "Furniture") and a scrolling list; Sell unchanged |
+| Persistence | Session only; browser reload resets house, bag, coins, clock and farm (documented). `HouseLayoutData` (versioned) prepared for M3.7, not stored |
+| Bed calibration (founder 2026-11-27) | `bed_north` drawn with a uniform visual scale 1.3 (`HousingVisualSet.visualScale`, X = Y around the pivot); PNG, PPU 64, pivot, footprint 1x2 and collider unchanged. Measured from matching features (pillow, motif) against `bed_west` |
+| Small-screen UI (founder 2026-11-27) | Interior HUD canvas never below 0.62 CSS px per reference px (`CanvasMinScale`); larger fonts; Living Decorate/Exit side by side under the Bag |
+| Housing baseline (founder acceptance 18/18) | **Approved:** Tropical Cozy Cottage design, responsive housing (adaptive camera + safe-area HUD + `CanvasMinScale`), placement rules, bed-only rotation, Decorating pauses time. **Furniture prices baseline:** Stool 25, Table 50, Tropical Rug 60, Indoor Plant 75, Bookshelf 100, Tropical Bed 150, Wooden Wardrobe 150; no resale. Changes need founder approval and a playtest |
+
 ## M3.5 market & economy decisions — 26 November 2026 (founder approved; accepted 16/16, milestone closed)
 | Topic | Working choice |
 | --- | --- |

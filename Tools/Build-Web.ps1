@@ -93,7 +93,14 @@ try {
     $unityArgs = @('-batchmode', '-quit', '-projectPath', $root, '-activeBuildProfile', $cfg.BuildProfile, '-logFile', $logFile)
     $relIncoming = "$($cfg.BuildRoot)/_incoming/$Name"
     if ($Variant -eq 'Local') { $unityArgs += @('-build', $relIncoming) }
-    else { $unityArgs += @('-executeMethod', 'Lifetopia.EditorTools.WebBuildCommand.Build', '-ltScene', $scene, '-ltOutput', $relIncoming) }
+    else {
+        $unityArgs += @('-executeMethod', 'Lifetopia.EditorTools.WebBuildCommand.Build', '-ltScene', $scene, '-ltOutput', $relIncoming)
+        if ($cfg.PublicExtraScenes) {
+            foreach ($extraScene in $cfg.PublicExtraScenes) { if (-not (Test-Path -LiteralPath $extraScene)) { Stop-Build "Extra scene $extraScene not found" } }
+            $unityArgs += @('-ltExtraScenes', ($cfg.PublicExtraScenes -join ';'))
+            Write-LtOk "Extra scenes: $($cfg.PublicExtraScenes -join ', ')"
+        }
+    }
 
     if ($DryRun) {
         Write-LtStep 'Dry run: Unity was NOT started'

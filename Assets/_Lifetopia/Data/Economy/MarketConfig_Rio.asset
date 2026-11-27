@@ -16,6 +16,13 @@ MonoBehaviour:
   greeting: Welcome, traveler!
   buyItems:
   - {fileID: 11400000, guid: 798247ddf8a98c04985fd803ea686c15, type: 2}
+  - {fileID: 11400000, guid: 7a7a93de6bb36ea4380717518afdb2ca, type: 2}
+  - {fileID: 11400000, guid: 652e34ef119ef8547b239fffe4a16538, type: 2}
+  - {fileID: 11400000, guid: bdd8fdc9275488a48ae247b99b3db876, type: 2}
+  - {fileID: 11400000, guid: 1c20c16bf9d831e45b5b599f88e20d4d, type: 2}
+  - {fileID: 11400000, guid: 430fcc401c670a847aa7adcdf4f3374d, type: 2}
+  - {fileID: 11400000, guid: 5e951230425c85a45a2756c3ac4eb742, type: 2}
+  - {fileID: 11400000, guid: 21c6bff0345c60f4c92e982c2cebb881, type: 2}
   sellItems:
   - {fileID: 11400000, guid: 396076ad2ed64f34fa4962594176a558, type: 2}
   - {fileID: 11400000, guid: ccf40fdcafe0c77448ab1d4d0c7bf9cb, type: 2}

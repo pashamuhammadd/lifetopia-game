@@ -116,6 +116,20 @@ Rumput, pasir/jalan, tanah kebun, air dangkal dan air dalam. Gunakan tile 64 × 
 
 Scene rumah terpisah dengan kamera/perspektif sama; lantai grid persegi, dinding belakang/samping terpotong agar terlihat. Furnitur satu pivot dasar dan footprint terdefinisi. Rotasi furnitur 90° hanya dengan sprite varian yang benar, bukan memutar sprite perspektif begitu saja. Dekorasi bebas dan properti baru masuk setelah vertical slice.
 
+**Kalibrasi M3.6 (Housing Asset Pack 01, Tropical Cozy Cottage — disetujui founder 27-11-2026, acceptance 18/18; baseline):**
+
+| Aturan | Nilai |
+|---|---|
+| Grid interior | 8 × 8 sel logis, 1 unit = 1 sel = 64 px; origin sudut barat-daya lantai |
+| Import | Sprite Single, 64 PPU, Bilinear, Clamp, tanpa mipmap, tanpa kompresi (kalibrasi), Full Rect, pivot dari manifest |
+| Pivot furnitur | 8 px di atas tepi bawah PNG = dasar visual (padding bawah terukur 8 px di semua sprite furnitur/dekor); anchor = depan-tengah footprint. Rug: pivot tengah, anchor tengah footprint |
+| Footprint | Dari data (`FurnitureDefinition`), bukan dari ukuran PNG; collider = footprint dikurangi 0,06 tiap sisi |
+| Sorting | Lantai `Ground`; dinding belakang/samping/jendela `GroundDetail`; rug `GroundDetail` order 5; furnitur `World` (SortingGroup, sumbu Y custom, sama dengan pemain); dinding depan rendah `World` pivot; ghost/penanda Decorating `Overhead` |
+| Dinding | Back wall 96 px (1,5 u) + cap kiri/kanan; strip samping 17 px diletakkan tepat di luar lantai; front cutaway 17 px dengan bukaan pintu 2 sel |
+| Arah | Hanya bed memakai varian west (bed_north 1×2 ↔ bed_west 2×1). Varian west lain cadangan sampai dikalibrasi; tidak ada sprite back/east |
+| Kalibrasi skala (founder 27-11-2026) | `bed_north` memakai skala visual **seragam 1,3** (X = Y, di sekitar pivot) agar sebanding dengan `bed_west` dan karakter; PNG/PPU/pivot/footprint/collider tidak berubah. Aturan umum: skala hanya seragam, diukur dari fitur yang sama antar varian, dicatat per sprite di `HousingVisualSet`. `table_west` masih terlalu kecil (cadangan, T-58) |
+| Publik | Interior publik memakai blok greybox berlabel "(TEMP)" yang dibuat di kode; tidak ada PNG |
+
 ## 06 / UI, UX & mobile
 
 ### Visual interface

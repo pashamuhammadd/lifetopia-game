@@ -1,5 +1,18 @@
 # Changelog
 ## Unreleased
+### M3.6 Housing System (Housing Asset Pack 01) — closed 2026-11-27 (founder acceptance 18/18)
+- Housing Asset Pack 01: 48 runtime PNG imported locally (`Art/HousingPack01`, MD5 identical to the pack; 64 PPU, manifest pivots, bilinear, clamp, no mipmaps, uncompressed). `Reference/` and `preview.png` not imported.
+- Starter house interior (`Lifetopia.Housing`): separate `HomeInterior` scene (art-free, tracked) loaded additively; 8 x 8 cell Tropical Cozy Cottage room built from data (floor, tall back wall with windows, side posts, low front cutaway with door opening, wall colliders). Enter with Interact at the existing house door ("Enter Home"); leave through the door opening or the HUD Exit button. Fade, input lock, cooldown, no double transition. House position unchanged.
+- Free starter furniture placed once per session (Tropical Bed, Wooden Table, Wooden Stool), not added to the bag.
+- Decorating Mode (Decorate button): grid overlay, reserved door cells, furniture list from the bag, ghost preview with green/red cells and reason text, Place / Move / Rotate (bed north/west sprites only) / Store / Cancel / Done; mouse, touch and keyboard (WASD, E, R, Tab, Delete, Esc). Pauses game time and movement like the bag; bag and market cannot open on top.
+- Placement rules (`HouseLayout`, `HouseDecorService`, `DecorateSession`): footprints from data, rug layer under furniture, no overlap, no blocking the player, flood-fill exit reachability, atomic place/move/store with re-entrancy guard and confirm cooldown; full bag keeps the piece placed.
+- Adaptive interior camera (`InteriorCameraFramer`): fits the room into the free screen area (safe area minus HUD), readability floor of 30 CSS px per cell, follows/clamps otherwise; HUD (`HousingHud`) anchored in the safe area, touch targets >= 80 reference px.
+- Session state: same inventory, hotbar, wallet, clock and farm across scene changes (village scene stays loaded); crops keep growing on active game time while inside; reload resets (no permanent save before M3.7).
+- Rio's Market: 7 furniture items in Buy (candidate prices stool 25, table 50, rug 60, plant 75, bookshelf 100, bed 150, wardrobe 150; item assets), category headers and a scrolling list; M3.5 baseline unchanged; no furniture resale (furniture Sell Price 0; stool buy price 50 → 25, sell 25 → 0).
+- Build tooling: Public variant adds runtime scenes from `PublicExtraScenes` (`-ltExtraScenes`); version 0.3.6 / M3.6.
+- 26 new EditMode tests (230 total).
+- Founder round 2026-11-27: `bed_north` uniform visual scale 1.3 (pivot/footprint/collider unchanged); interior HUD minimum scale on small phones (`CanvasMinScale`), larger text, Decorate/Exit side by side. Local build `M3-06-20261127-1037` deployed to Preview `aaa1b7ea`; production unchanged (`94abb7f9`). Public build re-run on the final code.
+- Founder acceptance (2026-11-27): founder-reported manual playtest on Cloudflare Preview incl. a phone, **18/18 passed**; M3.6 approved. Tropical Cozy Cottage design, responsive housing and furniture prices fixed as baseline.
 ### M3.5 Market & Economy — closed 2026-11-26 (founder acceptance 16/16)
 - NPC Asset Pack 01: 17 runtime PNG imported locally (PPU 64, feet pivot 0.5/0.125, bilinear, no mipmaps); Reference/ReferenceReuse not imported (existing item/coin icons reused).
 - Rio (`Lifetopia.Npc`: `NpcView`, `NpcVisualSet`, `MerchantNpc`): static merchant in front of the market stall, foot collider, Y-sorted like the player, turns to face the player; placeholder "Rio (TEMP)" in the public scene. Maya and Kai not placed.

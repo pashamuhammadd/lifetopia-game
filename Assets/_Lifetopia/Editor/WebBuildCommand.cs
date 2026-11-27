@@ -16,6 +16,9 @@ namespace Lifetopia.EditorTools
     ///     -activeBuildProfile Assets/_Lifetopia/Settings/BuildProfiles/Web.asset
     ///     -executeMethod Lifetopia.EditorTools.WebBuildCommand.Build
     ///     -ltScene Assets/_Lifetopia/Scenes/FirstPlayable.unity -ltOutput Builds/Web/_incoming/Name
+    ///     [-ltExtraScenes "Assets/_Lifetopia/Scenes/HomeInterior.unity;..."]
+    ///
+    /// Extra scenes are loaded at runtime by name (e.g. the house interior, loaded additively).
     ///
     /// The active Web build profile supplies the player settings (template, Brotli compression).
     /// Only the given scene is built. Nothing in the project or the profile asset is modified.
@@ -32,11 +35,22 @@ namespace Lifetopia.EditorTools
                 string scene = Arg("-ltScene");
                 string output = Arg("-ltOutput");
                 string profilePath = Arg("-ltProfile") ?? DefaultProfile;
+                string extra = Arg("-ltExtraScenes");
 
                 if (string.IsNullOrEmpty(scene) || string.IsNullOrEmpty(output))
                     throw new ArgumentException("Both -ltScene and -ltOutput are required.");
                 if (!File.Exists(scene))
                     throw new FileNotFoundException("Scene not found: " + scene);
+
+                var sceneList = new System.Collections.Generic.List<string> { scene };
+                if (!string.IsNullOrEmpty(extra))
+                    foreach (string s in extra.Split(';'))
+                    {
+                        string e = s.Trim();
+                        if (e.Length == 0) continue;
+                        if (!File.Exists(e)) throw new FileNotFoundException("Extra scene not found: " + e);
+                        if (!sceneList.Contains(e)) sceneList.Add(e);
+                    }
 
                 var profile = AssetDatabase.LoadAssetAtPath<BuildProfile>(profilePath);
                 if (profile == null)
@@ -49,14 +63,14 @@ namespace Lifetopia.EditorTools
 
                 var options = new BuildPlayerOptions
                 {
-                    scenes = new[] { scene },
+                    scenes = sceneList.ToArray(),
                     locationPathName = output,
                     target = BuildTarget.WebGL,
                     targetGroup = BuildTargetGroup.WebGL,
                     options = BuildOptions.None,
                 };
 
-                Debug.Log($"[LifetopiaBuild] Building {scene} -> {output}");
+                Debug.Log($"[LifetopiaBuild] Building {string.Join(", ", sceneList)} -> {output}");
                 BuildReport report = BuildPipeline.BuildPlayer(options);
                 var summary = report.summary;
                 Debug.Log($"[LifetopiaBuild] Result={summary.result} errors={summary.totalErrors} warnings={summary.totalWarnings} size={summary.totalSize} time={summary.totalTime}");

@@ -55,6 +55,10 @@ namespace Lifetopia.UI
         [Header("List")]
         [SerializeField] private MarketItemRowView rowTemplate;
         [SerializeField] private Text emptyLabel;
+        [Tooltip("Optional: scrolls the list when it is longer than the panel (kept in view on keyboard selection).")]
+        [SerializeField] private ScrollRect listScroll;
+        [Tooltip("Optional: header cloned above each item category in the Buy tab (e.g. Farming, Furniture).")]
+        [SerializeField] private Text sectionTemplate;
 
         [Header("Details")]
         [SerializeField] private Text itemNameLabel;
@@ -79,7 +83,8 @@ namespace Lifetopia.UI
 
         private MarketService _service;
         private PlayerProfile _profile;
-        private readonly List<MarketItemRowView> _rows = new List<MarketItemRowView>(4);
+        private readonly List<MarketItemRowView> _rows = new List<MarketItemRowView>(8);
+        private readonly List<Text> _sections = new List<Text>(2);
         private TradeMode _mode = TradeMode.Buy;
         private int _selected;
         private int _quantity = 1;
@@ -137,6 +142,7 @@ namespace Lifetopia.UI
                     _rows.Add(row);
                 }
             }
+            if (sectionTemplate != null) sectionTemplate.gameObject.SetActive(false);
             if (titleLabel != null) titleLabel.text = config.ShopName;
             if (greetingLabel != null) greetingLabel.text = config.Greeting;
 
@@ -189,6 +195,7 @@ namespace Lifetopia.UI
             _selected = 0;
             _quantity = 1;
             Refresh();
+            ScrollToSelected();
             Opened?.Invoke();
             return true;
         }
@@ -211,6 +218,7 @@ namespace Lifetopia.UI
             if (!IsOpen) return;
             if (_mode != mode) { _mode = mode; _selected = 0; _quantity = 1; _message = ""; }
             Refresh();
+            ScrollToSelected();
         }
 
         public void Select(int index)
@@ -218,6 +226,7 @@ namespace Lifetopia.UI
             if (!IsOpen || index < 0 || index >= CurrentItems.Count) return;
             if (_selected != index) { _selected = index; _quantity = 1; _message = ""; }
             Refresh();
+            ScrollToSelected();
         }
 
         public void ChangeQuantity(int delta)
@@ -308,6 +317,7 @@ namespace Lifetopia.UI
                 if (used) _rows[i].Show(items[i], _service.Owned(items[i]), config.UnitPrice(_mode, items[i]), i == _selected);
             }
             if (emptyLabel != null) emptyLabel.enabled = items.Count == 0;
+            LayoutSections(items);
 
             ItemDefinition item = SelectedItem;
             int max = MaxForSelection();
@@ -343,6 +353,81 @@ namespace Lifetopia.UI
                 bool error = showMessage ? _messageIsError : !q.Ok;
                 feedbackLabel.color = error ? ErrorText : UiPalette.DeepLeaf;
             }
+        }
+
+        /// <summary>
+        /// Buy tab: puts a category header (Farming, Furniture, ...) above each group when the list mixes
+        /// categories. Only reorders existing pooled objects; prices and trades are unaffected.
+        /// </summary>
+        private void LayoutSections(IReadOnlyList<ItemDefinition> items)
+        {
+            if (sectionTemplate == null) return;
+            bool show = _mode == TradeMode.Buy && CountSections(items) > 1;
+            int used = 0, sibling = 0;
+            string previous = null;
+            for (int i = 0; i < items.Count && i < _rows.Count; i++)
+            {
+                if (items[i] == null) continue;
+                string section = SectionName(items[i].Category);
+                if (show && section != previous)
+                {
+                    while (_sections.Count <= used)
+                    {
+                        Text t = Instantiate(sectionTemplate, sectionTemplate.transform.parent);
+                        t.name = "Section" + _sections.Count;
+                        _sections.Add(t);
+                    }
+                    Text h = _sections[used++];
+                    h.text = section;
+                    h.gameObject.SetActive(true);
+                    h.transform.SetSiblingIndex(sibling++);
+                    previous = section;
+                }
+                _rows[i].transform.SetSiblingIndex(sibling++);
+            }
+            for (int j = used; j < _sections.Count; j++) _sections[j].gameObject.SetActive(false);
+        }
+
+        private static int CountSections(IReadOnlyList<ItemDefinition> items)
+        {
+            int n = 0;
+            string previous = null;
+            foreach (ItemDefinition item in items)
+            {
+                if (item == null) continue;
+                string s = SectionName(item.Category);
+                if (s != previous) { n++; previous = s; }
+            }
+            return n;
+        }
+
+        public static string SectionName(ItemCategory category) => category switch
+        {
+            ItemCategory.Seed => "Farming",
+            ItemCategory.Furniture => "Furniture",
+            ItemCategory.Tool => "Tools",
+            ItemCategory.Crop => "Harvest",
+            ItemCategory.Fish => "Fish",
+            _ => "Materials",
+        };
+
+        /// <summary>Scrolls the list so the selected row is fully visible (keyboard navigation).</summary>
+        private void ScrollToSelected()
+        {
+            if (listScroll == null || listScroll.content == null || listScroll.viewport == null) return;
+            if (_selected < 0 || _selected >= _rows.Count || !_rows[_selected].gameObject.activeSelf) return;
+            Canvas.ForceUpdateCanvases();
+            RectTransform content = listScroll.content;
+            var row = (RectTransform)_rows[_selected].transform;
+            float top = -row.anchoredPosition.y - row.rect.height * (1f - row.pivot.y);
+            if (_selected == 0) top = 0f; // also reveal the first section header
+            float bottom = top + row.rect.height;
+            float view = listScroll.viewport.rect.height;
+            float y = content.anchoredPosition.y;
+            if (top < y) y = top;
+            else if (bottom > y + view) y = bottom - view;
+            y = Mathf.Clamp(y, 0f, Mathf.Max(0f, content.rect.height - view));
+            content.anchoredPosition = new Vector2(content.anchoredPosition.x, y);
         }
 
         private static void StyleTab(Image fill, Text label, GameObject indicator, bool active, string text)

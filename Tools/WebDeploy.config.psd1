@@ -11,14 +11,16 @@
     # Variant 'Public' = FirstPlayable greybox placeholder scene that the public repository can build.
     LocalScene       = 'Assets/_Lifetopia/Scenes/GameplayPrototype.unity'
     PublicScene      = 'Assets/_Lifetopia/Scenes/FirstPlayable.unity'
+    # Extra scenes loaded at runtime by name (Public variant; the Local variant uses the build profile list).
+    PublicExtraScenes = @('Assets/_Lifetopia/Scenes/HomeInterior.unity')
 
     # Build output (Builds/ is ignored by Git).
     BuildRoot        = 'Builds/Web'
     MinFreeMemoryGB  = 1.5
 
     # Version information shown on the loading screen (version.json).
-    GameVersion      = '0.3.5'
-    Milestone        = 'M3.5'
+    GameVersion      = '0.3.6'
+    Milestone        = 'M3.6'
     Channel          = 'Development Build'
 
     # Cloudflare Pages (existing project; the scripts never create projects or change domains).

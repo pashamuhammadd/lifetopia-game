@@ -6,7 +6,7 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 ## Release gates (P0)
 | ID | Item | Notes |
 |---|---|---|
-| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. **2026-11-26: founder-reported manual playtest on one real phone passed 10/10 functional checks** (build `M3-02-20261126-1527`). Still open: record device model + browser, cover both Android Chrome and iOS Safari, measure FPS, memory and load time **2026-11-26 (M3.3): founder-reported phone playtest of farming 12/12 passed;** device performance measurement (model, browser, FPS, memory, load time) still open (founder request). **2026-11-26 (M3.4): founder-reported Preview playtest incl. real phone 15/15 passed;** device performance measurement and **iOS Safari test** still open (founder request). **2026-11-26 (M3.5): founder-reported Preview playtest incl. real phone 16/16 passed;** device performance measurement and iOS Safari still open (kept at M3.5 close) |
+| G-1 | Real-phone test: Android Chrome + iOS Safari minimum | FPS, memory, touch, rotate overlay, safe area, load time. Emulation results do not count. **2026-11-26: founder-reported manual playtest on one real phone passed 10/10 functional checks** (build `M3-02-20261126-1527`). Still open: record device model + browser, cover both Android Chrome and iOS Safari, measure FPS, memory and load time **2026-11-26 (M3.3): founder-reported phone playtest of farming 12/12 passed;** device performance measurement (model, browser, FPS, memory, load time) still open (founder request). **2026-11-26 (M3.4): founder-reported Preview playtest incl. real phone 15/15 passed;** device performance measurement and **iOS Safari test** still open (founder request). **2026-11-26 (M3.5): founder-reported Preview playtest incl. real phone 16/16 passed;** device performance measurement and iOS Safari still open (kept at M3.5 close). **2026-11-27 (M3.6): founder-reported Preview playtest incl. phone 18/18 passed;** device metrics and iOS Safari still open |
 | G-2 | Art distribution rights review (A0 + A0-02) | **Partly decided 2026-11-26:** publishing inside Web builds on Cloudflare Pages approved by founder. PNGs, masters and backups stay out of the GitHub repository (still local-only) |
 | G-3 | Repo license decision | Public repo ≠ open source; owner decision |
 
@@ -89,6 +89,16 @@ Source: `Progress/M2-art-calibration-final.md`, `DECISIONS.md` (M2 calibration d
 | T-54 | P2 | Market sound effects (buy, sell, refused) with the mute option (with T-45/T-46b) (kept at M3.5 close) |
 | T-55 | P2 | (kept at M3.5 close) Gamepad for the market (stick = navigate, South = confirm, Start = close; Tab has no gamepad equivalent yet); part of V-3 |
 | T-56 | P3 | Place Maya and Kai (assets imported locally, not in game) in a later milestone |
+| T-57 | P1 | (M3.6) House layout persistence: `HouseLayoutData` (versioned, validated `TryLoad`) is ready; store it with the M3.7 local save (with T-41/T-52). Reload still resets the house |
+| T-58 | P2 | (M3.6) Art QC: `bed_north` calibrated 2026-11-27 with uniform visual scale 1.3 (founder). Still open: `table_west` much smaller than `table_north` — calibrate/re-export before enabling more rotations; a re-exported bed_north at final size would let the scale return to 1.0 |
+| T-59 | P2 | (M3.6) Enable west variants for table/stool/chair/wardrobe/bookshelf/chest after art calibration; currently reserve |
+| T-60 | P2 | (M3.6) Reserve decor (rattan chair, chest, rug_rect, lantern, flower vase, hibiscus, palm, small plant, basket, shell) imported without item/price; needs founder pricing + footprint approval |
+| T-61 | P3 | (M3.6) Small decor on tables/shelves (stacking) and wall decorations — not supported; floor only |
+| T-62 | P2 | (M3.6) Bed is decorative only: no sleep/skip-day without founder approval |
+| T-63 | P2 | (M3.6) Housing SFX (place, store, invalid) and placement animation (with T-45) |
+| T-64 | P2 | (M3.6) Gamepad for Decorating Mode (bindings via NavigateInput/UiSubmit exist, untested; part of V-3) |
+| T-65 | P2 | (M3.6) PlayMode test assembly for scene transitions/decorating (currently scripted Play Mode checks via MCP; with T-18) |
+| T-66 | P3 | (M3.6) Market "Owned" shows bag count only; placed furniture not counted |
 | T-19 | P2 | `Data/` is now partly public (`Data/Items`); `Data/Characters` stays local — keep `.git/info/exclude` in sync |
 
 ## Item icons to produce (M3.1, Art Bible §05: 128×128, 12 px padding)

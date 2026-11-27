@@ -24,6 +24,8 @@ MonoBehaviour:
     m_path: Assets/_Lifetopia/Scenes/FirstPlayable.unity
   - m_enabled: 1
     m_path: Assets/_Lifetopia/Scenes/FoundationSmoke.unity
+  - m_enabled: 1
+    m_path: Assets/_Lifetopia/Scenes/HomeInterior.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

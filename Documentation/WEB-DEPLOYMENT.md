@@ -64,6 +64,7 @@ Builds/Web/deploy-history.csv      riwayat deploy lokal (id production sebelumny
 
 - `Local` memakai perintah yang sudah terbukti: `-activeBuildProfile Web.asset -build <path>`. Skrip mewajibkan scene pertama di profil Web lokal adalah GameplayPrototype.
 - `Public` memakai `-executeMethod Lifetopia.EditorTools.WebBuildCommand.Build` dengan scene FirstPlayable. Profil Web tetap memberi template dan kompresi; file profil tidak diubah.
+- **Sejak M3.6:** scene interior `HomeInterior` dimuat saat runtime (additive). Varian `Public` menambahkannya lewat `PublicExtraScenes` di `WebDeploy.config.psd1` → argumen `-ltExtraScenes`. Varian `Local` memakai daftar scene profil Web lokal, yang sekarang juga memuat `HomeInterior.unity` (urutan: GameplayPrototype, FirstPlayable, FoundationSmoke, HomeInterior). `HomeInterior` tidak berisi artwork; art lokal diteruskan dari scene GameplayPrototype.
 - `version.json` mencatat `contentMode`: `local-art` atau `public-placeholder`. Build lama tanpa `version.json` dianggap `unknown`.
 
 ## 4. Command
@@ -250,6 +251,12 @@ Setelah rollback: `.\Tools\Verify-WebBuild.ps1 -Url https://play.lifetopiaworld.
 - `Verify-WebBuild.ps1 -ScanRepo` memeriksa pola secret di semua file repo yang tidak di-ignore.
 - Yang diunggah hanya folder staging dari daftar izin. Source Unity, master art, backup, log, `.meta`, dan dokumen tidak pernah ikut.
 - Build `Local` berisi artwork original. Publikasi lewat Cloudflare Pages **disetujui founder 26-11-2026**. Production saat ini (`94abb7f9`, build `M3-05-20261126-2211`) berisi artwork ini (termasuk sprite NPC Rio). Repository GitHub tetap tanpa PNG, master art, dan backup.
+
+## 11a. Riwayat preview M3.6
+
+| Tanggal | Build | Deployment | Catatan |
+|---|---|---|---|
+| 2026-11-27 | `M3-06-20261127-1037` (Local, v0.3.6) | Preview `aaa1b7ea` (https://aaa1b7ea.lifetopia-play.pages.dev, alias preview) | Disetujui founder; production tetap `94abb7f9` (M3.5). Local build dijalankan sebagai proses Windows terpisah (`Start-Process`) karena percobaan sebelumnya dihentikan oleh pembersih proses background Claude Code saat RAM rendah; pemeriksaan RAM skrip tetap aktif |
 
 ## 12. Catatan untuk Claude (sesi berikutnya)
 
